@@ -47,13 +47,13 @@ namespace Wedgies
 
         void chkOnOff_CheckedChanged(object sender, EventArgs e)
         {
-            if (bRunning)bRunning = false; // this will will cause the Completed event to fire so we don't have to call StartStop here
+            if (bRunning) bRunning = false; // this will will cause the Completed event to fire so we don't have to call StartStop here
             else StartStop(null, null); 
         }
 
         private void ToggleForm(bool enable)
         {
-            cboBaudRate.Enabled = cboPort.Enabled = enable;
+            cboBaudRate.Enabled = cboPort.Enabled = cboHandShake.Enabled = enable;
         }
 
         private void Populate()
