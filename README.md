@@ -1,6 +1,6 @@
 # SerialWedge
 
-## C# Serial Data Keyboard Wedge
+## Simple Serial Data Keyboard Wedge
 
 Sends data from serial port to any application, like Excel for example. 
 
