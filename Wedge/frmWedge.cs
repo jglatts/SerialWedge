@@ -62,7 +62,7 @@ namespace Wedgies
             cboHandShake.DataSource = handShakes.Keys.ToArray();
             cboHandShake.SelectedIndex = 2;
             cboBaudRate.DataSource = bauds;
-            cboBaudRate.SelectedIndex = 4;
+            cboBaudRate.SelectedIndex = 4;  
         }
         private void StartStop(object sender, RunWorkerCompletedEventArgs args)
         {
@@ -84,6 +84,7 @@ namespace Wedgies
                 catch 
                 {
                     MessageBox.Show("error opening port!");
+                    chkOnOff.Checked = false;
                 }
             }
         }
