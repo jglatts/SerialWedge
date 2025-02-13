@@ -5,7 +5,7 @@
 Sends data from serial port to any application, like Excel for example.
 
 
-Cloned from https://github.com/pormiston/SerialWedge
+Builds upon https://github.com/pormiston/SerialWedge
 
 ### System ScreenShot
 ![system_gui](https://raw.githubusercontent.com/jglatts/SerialWedge/refs/heads/master/images/gui.png)
