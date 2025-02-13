@@ -65,6 +65,7 @@ namespace Wedgies
             {
                 port.PortName = cboPort.SelectedItem + "";
                 port.BaudRate = (int)cboBaudRate.SelectedItem;
+                port.Handshake = Handshake.RequestToSend;
                 port.Open();
                 
                 bRunning = true;
@@ -73,11 +74,15 @@ namespace Wedgies
         }
         private void interceptBuffer(object sender, DoWorkEventArgs args)
         {
+            string last_string = "";
             while (bRunning)
             {
                 try
                 {
                     var line = port.ReadLine();
+                    if (line.Contains("@"))
+                        continue;
+
                     SendKeys.SendWait(line);
                 }
                 catch (TimeoutException) { }
