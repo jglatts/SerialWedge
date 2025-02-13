@@ -13,21 +13,27 @@ namespace Wedgies
 {
     public partial class frmWedge : Form
     {
-        private int[] bauds = {110, 300, 600, 1200, 2400, 4800, 9600, 14400, 19200, 38400, 57600};
+        private int[] bauds = {110, 300, 600, 1200, 2400, 4800, 9600, 14400, 19200, 38400, 57600, 115200};
+        private Dictionary<string, Handshake> handShakes = new Dictionary<string, Handshake>() 
+        {
+            { "None", Handshake.None },
+            { "XOnXOff", Handshake.XOnXOff },
+            { "ReqeustToSend", Handshake.RequestToSend },
+            { "RequestToSendXOnXOff", Handshake.RequestToSendXOnXOff }
+
+        };
         private bool bRunning = false;
         private SerialPort port = null;
 
         public frmWedge()
         {
             InitializeComponent();
-
             Populate();
-
             port = new SerialPort();
             port.ReadTimeout = 500;
             port.WriteTimeout = 500; 
-
-            //handle events
+            
+            // event handlers
             chkOnOff.CheckedChanged += new EventHandler(chkOnOff_CheckedChanged);
             FormClosing += new FormClosingEventHandler(frmWedge_FormClosing);
             bgwInterceptWorker.DoWork += new DoWorkEventHandler(interceptBuffer);
@@ -53,7 +59,10 @@ namespace Wedgies
         private void Populate()
         {
             cboPort.DataSource = SerialPort.GetPortNames();
+            cboHandShake.DataSource = handShakes.Keys.ToArray();
+            cboHandShake.SelectedIndex = 2;
             cboBaudRate.DataSource = bauds;
+            cboBaudRate.SelectedIndex = 4;
         }
         private void StartStop(object sender, RunWorkerCompletedEventArgs args)
         {
@@ -63,20 +72,25 @@ namespace Wedgies
            
             if (chkOnOff.Checked)
             {
-                port.PortName = cboPort.SelectedItem + "";
-                port.BaudRate = (int)cboBaudRate.SelectedItem;
-                port.Handshake = Handshake.RequestToSend;
-                port.Open();
-                
-                bRunning = true;
-                bgwInterceptWorker.RunWorkerAsync();
+                try
+                {
+                    port.PortName = cboPort.SelectedItem + "";
+                    port.BaudRate = (int)cboBaudRate.SelectedItem;
+                    port.Handshake = handShakes[cboHandShake.SelectedItem.ToString()];
+                    port.Open();
+                    bRunning = true;
+                    bgwInterceptWorker.RunWorkerAsync();
+                }
+                catch 
+                {
+                    MessageBox.Show("error opening port!");
+                }
             }
         }
         private void interceptBuffer(object sender, DoWorkEventArgs args)
         {
             // below alg will get the 2nd val sent (the ydata)
             // should allow user to change this at run time 
-            string last_string = "";
             bool last_was_number = false; 
 
             while (bRunning)
@@ -110,5 +124,9 @@ namespace Wedgies
             }
         }
 
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
