@@ -74,7 +74,11 @@ namespace Wedgies
         }
         private void interceptBuffer(object sender, DoWorkEventArgs args)
         {
+            // below alg will get the 2nd val sent (the ydata)
+            // should allow user to change this at run time 
             string last_string = "";
+            bool last_was_number = false; 
+
             while (bRunning)
             {
                 try
@@ -83,7 +87,24 @@ namespace Wedgies
                     if (line.Contains("@"))
                         continue;
 
-                    SendKeys.SendWait(line);
+                    if (Double.TryParse(line, out double val))
+                    {
+                        if (val == 0)
+                        {
+                            continue;
+                        }
+
+                        if (last_was_number)
+                        {
+                            SendKeys.SendWait(line);
+                            last_was_number = false;
+                        }
+                        else
+                        {
+                            last_was_number = true;
+                        }
+                    }
+
                 }
                 catch (TimeoutException) { }
             }

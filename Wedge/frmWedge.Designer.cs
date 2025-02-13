@@ -38,39 +38,43 @@
             // cboPort
             // 
             this.cboPort.FormattingEnabled = true;
-            this.cboPort.Location = new System.Drawing.Point(42, 36);
+            this.cboPort.Location = new System.Drawing.Point(63, 55);
+            this.cboPort.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cboPort.Name = "cboPort";
-            this.cboPort.Size = new System.Drawing.Size(121, 21);
+            this.cboPort.Size = new System.Drawing.Size(180, 28);
             this.cboPort.TabIndex = 0;
             // 
             // cboBaudRate
             // 
             this.cboBaudRate.FormattingEnabled = true;
-            this.cboBaudRate.Location = new System.Drawing.Point(42, 83);
+            this.cboBaudRate.Location = new System.Drawing.Point(63, 128);
+            this.cboBaudRate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cboBaudRate.Name = "cboBaudRate";
-            this.cboBaudRate.Size = new System.Drawing.Size(121, 21);
+            this.cboBaudRate.Size = new System.Drawing.Size(180, 28);
             this.cboBaudRate.TabIndex = 1;
             // 
             // chkOnOff
             // 
             this.chkOnOff.Appearance = System.Windows.Forms.Appearance.Button;
             this.chkOnOff.AutoSize = true;
-            this.chkOnOff.Location = new System.Drawing.Point(80, 144);
+            this.chkOnOff.Location = new System.Drawing.Point(120, 222);
+            this.chkOnOff.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.chkOnOff.Name = "chkOnOff";
-            this.chkOnOff.Size = new System.Drawing.Size(50, 23);
+            this.chkOnOff.Size = new System.Drawing.Size(66, 30);
             this.chkOnOff.TabIndex = 2;
             this.chkOnOff.Text = "On/Off";
             this.chkOnOff.UseVisualStyleBackColor = true;
             // 
             // frmWedge
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(203, 215);
+            this.ClientSize = new System.Drawing.Size(304, 331);
             this.Controls.Add(this.chkOnOff);
             this.Controls.Add(this.cboBaudRate);
             this.Controls.Add(this.cboPort);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmWedge";
             this.Text = "Wedge";
             this.ResumeLayout(false);
