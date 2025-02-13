@@ -37,20 +37,28 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.cboHandShake = new System.Windows.Forms.ComboBox();
+            this.tabSerialSettings = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tabSerialSettings.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // cboPort
             // 
             this.cboPort.FormattingEnabled = true;
-            this.cboPort.Location = new System.Drawing.Point(102, 39);
+            this.cboPort.Location = new System.Drawing.Point(113, 42);
             this.cboPort.Name = "cboPort";
             this.cboPort.Size = new System.Drawing.Size(121, 21);
             this.cboPort.TabIndex = 0;
+            this.cboPort.SelectedIndexChanged += new System.EventHandler(this.cboPort_SelectedIndexChanged);
             // 
             // cboBaudRate
             // 
             this.cboBaudRate.FormattingEnabled = true;
-            this.cboBaudRate.Location = new System.Drawing.Point(102, 84);
+            this.cboBaudRate.Location = new System.Drawing.Point(113, 106);
             this.cboBaudRate.Name = "cboBaudRate";
             this.cboBaudRate.Size = new System.Drawing.Size(121, 21);
             this.cboBaudRate.TabIndex = 1;
@@ -59,7 +67,7 @@
             // 
             this.chkOnOff.Appearance = System.Windows.Forms.Appearance.Button;
             this.chkOnOff.AutoSize = true;
-            this.chkOnOff.Location = new System.Drawing.Point(126, 176);
+            this.chkOnOff.Location = new System.Drawing.Point(132, 147);
             this.chkOnOff.Name = "chkOnOff";
             this.chkOnOff.Size = new System.Drawing.Size(50, 23);
             this.chkOnOff.TabIndex = 2;
@@ -69,7 +77,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(32, 41);
+            this.label1.Location = new System.Drawing.Point(43, 44);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(66, 13);
@@ -80,7 +88,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(40, 87);
+            this.label2.Location = new System.Drawing.Point(51, 109);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(58, 13);
@@ -90,7 +98,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(36, 133);
+            this.label3.Location = new System.Drawing.Point(46, 78);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(64, 13);
@@ -100,28 +108,77 @@
             // cboHandShake
             // 
             this.cboHandShake.FormattingEnabled = true;
-            this.cboHandShake.Location = new System.Drawing.Point(103, 129);
+            this.cboHandShake.Location = new System.Drawing.Point(113, 73);
             this.cboHandShake.Name = "cboHandShake";
             this.cboHandShake.Size = new System.Drawing.Size(121, 21);
             this.cboHandShake.TabIndex = 6;
+            // 
+            // tabSerialSettings
+            // 
+            this.tabSerialSettings.Controls.Add(this.tabPage1);
+            this.tabSerialSettings.Controls.Add(this.tabPage2);
+            this.tabSerialSettings.Location = new System.Drawing.Point(0, -1);
+            this.tabSerialSettings.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabSerialSettings.Name = "tabSerialSettings";
+            this.tabSerialSettings.SelectedIndex = 0;
+            this.tabSerialSettings.Size = new System.Drawing.Size(317, 245);
+            this.tabSerialSettings.TabIndex = 7;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.cboPort);
+            this.tabPage1.Controls.Add(this.chkOnOff);
+            this.tabPage1.Controls.Add(this.label2);
+            this.tabPage1.Controls.Add(this.cboHandShake);
+            this.tabPage1.Controls.Add(this.label3);
+            this.tabPage1.Controls.Add(this.cboBaudRate);
+            this.tabPage1.Controls.Add(this.label1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage1.Size = new System.Drawing.Size(309, 219);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Serial Settings";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.textBox1);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage2.Size = new System.Drawing.Size(309, 219);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Live Input";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(0, 0);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox1.Size = new System.Drawing.Size(316, 217);
+            this.textBox1.TabIndex = 0;
             // 
             // frmWedge
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(305, 248);
-            this.Controls.Add(this.cboHandShake);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.chkOnOff);
-            this.Controls.Add(this.cboBaudRate);
-            this.Controls.Add(this.cboPort);
+            this.ClientSize = new System.Drawing.Size(318, 243);
+            this.Controls.Add(this.tabSerialSettings);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmWedge";
             this.Text = "Wedge";
+            this.tabSerialSettings.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -135,6 +192,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cboHandShake;
+        private System.Windows.Forms.TabControl tabSerialSettings;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

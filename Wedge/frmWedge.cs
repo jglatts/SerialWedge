@@ -129,5 +129,10 @@ namespace Wedgies
         {
 
         }
+
+        private void cboPort_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
