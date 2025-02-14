@@ -119,6 +119,7 @@ namespace Wedgies
                 try
                 {
                     string line = port.ReadLine();
+
                     if (line.Contains("@"))
                         continue;
 
@@ -142,11 +143,7 @@ namespace Wedgies
                     }
 
                 }
-                catch (TimeoutException) 
-                {
-                    txtBoxLiveInput.Text += "\n" + DateTime.Now.ToString("M/d/y h:mm:ss tt") + 
-                                                 " Timeout Exception!\n";
-                }
+                catch (TimeoutException) { } 
             }
         }
 
