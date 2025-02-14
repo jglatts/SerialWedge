@@ -26,5 +26,5 @@ Builds upon https://github.com/pormiston/SerialWedge
 3. Build and Run 
 
 #### From Github Releases 
-1. Dowloand the assests from the releases tab
+1. Dowload the assests from the releases tab
 2. Run the Wedge.exe application 
