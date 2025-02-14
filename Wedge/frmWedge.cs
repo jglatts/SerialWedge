@@ -18,7 +18,7 @@ namespace Wedgies
         {
             { "None", Handshake.None },
             { "XOnXOff", Handshake.XOnXOff },
-            { "ReqeustToSend", Handshake.RequestToSend },
+            { "RequestToSend", Handshake.RequestToSend },
             { "RequestToSendXOnXOff", Handshake.RequestToSendXOnXOff }
 
         };
