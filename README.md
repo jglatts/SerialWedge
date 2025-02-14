@@ -11,4 +11,11 @@ Builds upon https://github.com/pormiston/SerialWedge
 
 
 ### How To Run
-1. Go to github release tab and download latest release, or build from source. 
+#### From Source
+1. Clone the repo
+2. Open the Wedge.sln solution file in Visual Studio
+3. Build and Run 
+
+#### From Github Releases 
+1. Dowloand the assests from the releases tab
+2. Run the Wedge.exe application 
