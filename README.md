@@ -3,7 +3,7 @@
 
 Sends data from serial port to any application, like excel for example.  
 Can collect data from serial, RS232, and RS232-via-USB professional instruments.  
-Compatible with:  
+Compatible with:
 * Balances and Scales
 * Meters
 * Gauges
