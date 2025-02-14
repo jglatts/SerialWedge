@@ -28,3 +28,8 @@ Builds upon https://github.com/pormiston/SerialWedge
 #### From Github Releases 
 1. Dowload the assests from the releases tab
 2. Run the Wedge.exe application 
+
+
+
+#### Why this is effective  
+https://raw.githubusercontent.com/jglatts/SerialWedge/refs/heads/master/images/funny-c%23.jpg
