@@ -24,6 +24,7 @@ namespace Wedgies
         };
         private bool bRunning = false;
         private SerialPort port = null;
+        private bool inputBeep = false;
 
         public frmWedge()
         {
@@ -38,6 +39,7 @@ namespace Wedgies
             FormClosing += new FormClosingEventHandler(frmWedge_FormClosing);
             bgwInterceptWorker.DoWork += new DoWorkEventHandler(interceptBuffer);
             bgwInterceptWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(StartStop);
+            chkBeepOnInput.Checked = true;
         }
 
         void frmWedge_FormClosing(object sender, FormClosingEventArgs e)
@@ -134,6 +136,8 @@ namespace Wedgies
                         if (last_was_number)
                         {
                             SendKeys.SendWait(line);
+                            if (inputBeep)
+                                Console.Beep(3500, 500);
                             last_was_number = false;
                         }
                         else
@@ -155,6 +159,11 @@ namespace Wedgies
         private void cboPort_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void chkBeepOnInput_CheckedChanged(object sender, EventArgs e)
+        {
+            inputBeep = chkBeepOnInput.Checked;
         }
     }
 }
