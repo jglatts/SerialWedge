@@ -2,7 +2,6 @@
 # Simple Serial Data Keyboard Wedge
 
 Sends data from serial port to any application, like Excel for example.
-
 Can collect data from serial, RS232, and RS232-via-USB professional instruments.
 
 Compatible with:
