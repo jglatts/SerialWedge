@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmWedge));
             this.cboPort = new System.Windows.Forms.ComboBox();
             this.cboBaudRate = new System.Windows.Forms.ComboBox();
-            this.chkOnOff = new System.Windows.Forms.CheckBox();
             this.bgwInterceptWorker = new System.ComponentModel.BackgroundWorker();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -39,8 +38,9 @@
             this.cboHandShake = new System.Windows.Forms.ComboBox();
             this.tabSerialSettings = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.chkOnOff = new System.Windows.Forms.CheckBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtBoxLiveInput = new System.Windows.Forms.TextBox();
             this.tabSerialSettings.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -49,7 +49,7 @@
             // cboPort
             // 
             this.cboPort.FormattingEnabled = true;
-            this.cboPort.Location = new System.Drawing.Point(170, 65);
+            this.cboPort.Location = new System.Drawing.Point(226, 76);
             this.cboPort.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cboPort.Name = "cboPort";
             this.cboPort.Size = new System.Drawing.Size(180, 28);
@@ -59,28 +59,16 @@
             // cboBaudRate
             // 
             this.cboBaudRate.FormattingEnabled = true;
-            this.cboBaudRate.Location = new System.Drawing.Point(170, 163);
+            this.cboBaudRate.Location = new System.Drawing.Point(226, 174);
             this.cboBaudRate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cboBaudRate.Name = "cboBaudRate";
             this.cboBaudRate.Size = new System.Drawing.Size(180, 28);
             this.cboBaudRate.TabIndex = 1;
             // 
-            // chkOnOff
-            // 
-            this.chkOnOff.Appearance = System.Windows.Forms.Appearance.Button;
-            this.chkOnOff.Location = new System.Drawing.Point(120, 226);
-            this.chkOnOff.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.chkOnOff.Name = "chkOnOff";
-            this.chkOnOff.Size = new System.Drawing.Size(241, 72);
-            this.chkOnOff.TabIndex = 2;
-            this.chkOnOff.Text = "On/Off";
-            this.chkOnOff.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.chkOnOff.UseVisualStyleBackColor = true;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(64, 68);
+            this.label1.Location = new System.Drawing.Point(120, 79);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(98, 20);
             this.label1.TabIndex = 3;
@@ -90,7 +78,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(76, 168);
+            this.label2.Location = new System.Drawing.Point(132, 179);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(86, 20);
             this.label2.TabIndex = 4;
@@ -99,7 +87,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(69, 120);
+            this.label3.Location = new System.Drawing.Point(125, 131);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(94, 20);
             this.label3.TabIndex = 5;
@@ -108,7 +96,7 @@
             // cboHandShake
             // 
             this.cboHandShake.FormattingEnabled = true;
-            this.cboHandShake.Location = new System.Drawing.Point(170, 112);
+            this.cboHandShake.Location = new System.Drawing.Point(226, 123);
             this.cboHandShake.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cboHandShake.Name = "cboHandShake";
             this.cboHandShake.Size = new System.Drawing.Size(180, 28);
@@ -121,7 +109,7 @@
             this.tabSerialSettings.Location = new System.Drawing.Point(0, -2);
             this.tabSerialSettings.Name = "tabSerialSettings";
             this.tabSerialSettings.SelectedIndex = 0;
-            this.tabSerialSettings.Size = new System.Drawing.Size(484, 377);
+            this.tabSerialSettings.Size = new System.Drawing.Size(593, 422);
             this.tabSerialSettings.TabIndex = 7;
             // 
             // tabPage1
@@ -136,14 +124,26 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(476, 344);
+            this.tabPage1.Size = new System.Drawing.Size(585, 389);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Serial Settings";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // chkOnOff
+            // 
+            this.chkOnOff.Appearance = System.Windows.Forms.Appearance.Button;
+            this.chkOnOff.Location = new System.Drawing.Point(182, 239);
+            this.chkOnOff.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.chkOnOff.Name = "chkOnOff";
+            this.chkOnOff.Size = new System.Drawing.Size(241, 72);
+            this.chkOnOff.TabIndex = 2;
+            this.chkOnOff.Text = "On/Off";
+            this.chkOnOff.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.chkOnOff.UseVisualStyleBackColor = true;
+            // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.textBox1);
+            this.tabPage2.Controls.Add(this.txtBoxLiveInput);
             this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -152,20 +152,20 @@
             this.tabPage2.Text = "Live Input";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // txtBoxLiveInput
             // 
-            this.textBox1.Location = new System.Drawing.Point(0, 0);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(472, 332);
-            this.textBox1.TabIndex = 0;
+            this.txtBoxLiveInput.Location = new System.Drawing.Point(0, 0);
+            this.txtBoxLiveInput.Multiline = true;
+            this.txtBoxLiveInput.Name = "txtBoxLiveInput";
+            this.txtBoxLiveInput.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtBoxLiveInput.Size = new System.Drawing.Size(472, 332);
+            this.txtBoxLiveInput.TabIndex = 0;
             // 
             // frmWedge
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(477, 374);
+            this.ClientSize = new System.Drawing.Size(587, 412);
             this.Controls.Add(this.tabSerialSettings);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -184,7 +184,6 @@
 
         private System.Windows.Forms.ComboBox cboPort;
         private System.Windows.Forms.ComboBox cboBaudRate;
-        private System.Windows.Forms.CheckBox chkOnOff;
         private System.ComponentModel.BackgroundWorker bgwInterceptWorker;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -193,7 +192,8 @@
         private System.Windows.Forms.TabControl tabSerialSettings;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtBoxLiveInput;
+        private System.Windows.Forms.CheckBox chkOnOff;
     }
 }
 

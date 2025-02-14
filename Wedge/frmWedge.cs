@@ -31,8 +31,8 @@ namespace Wedgies
             Populate();
             port = new SerialPort();
             port.ReadTimeout = 500;
-            port.WriteTimeout = 500; 
-            
+            port.WriteTimeout = 500;
+
             // event handlers
             chkOnOff.CheckedChanged += new EventHandler(chkOnOff_CheckedChanged);
             FormClosing += new FormClosingEventHandler(frmWedge_FormClosing);
@@ -47,8 +47,17 @@ namespace Wedgies
 
         void chkOnOff_CheckedChanged(object sender, EventArgs e)
         {
-            if (bRunning) bRunning = false; // this will will cause the Completed event to fire so we don't have to call StartStop here
-            else StartStop(null, null); 
+            if (bRunning)
+            {
+                // this will will cause the Completed event to fire
+                // so we don't have to call StartStop here
+                bRunning = false;
+                txtBoxLiveInput.Text = "";
+            }
+            else
+            {
+                StartStop(null, null);
+            }
         }
 
         private void ToggleForm(bool enable)
@@ -58,7 +67,12 @@ namespace Wedgies
 
         private void Populate()
         {
-            cboPort.DataSource = SerialPort.GetPortNames();
+            string[] port_names = SerialPort.GetPortNames();
+            if (port_names.Length != 0)
+                cboPort.DataSource = port_names;
+            else
+                cboPort.Text = "NO PORTS FOUND";
+            
             cboHandShake.DataSource = handShakes.Keys.ToArray();
             cboHandShake.SelectedIndex = 2;
             cboBaudRate.DataSource = bauds;
@@ -88,6 +102,12 @@ namespace Wedgies
                 }
             }
         }
+
+        private void updateLiveInput(string line)
+        { 
+            txtBoxLiveInput.Text += DateTime.Now.ToString("M/d/y h:mm:ss tt") + ">> " + line + "\n";
+        }
+
         private void interceptBuffer(object sender, DoWorkEventArgs args)
         {
             // below alg will get the 2nd val sent (the ydata)
@@ -98,10 +118,11 @@ namespace Wedgies
             {
                 try
                 {
-                    var line = port.ReadLine();
+                    string line = port.ReadLine();
                     if (line.Contains("@"))
                         continue;
 
+                    updateLiveInput(line);
                     if (Double.TryParse(line, out double val))
                     {
                         if (val == 0)
@@ -121,7 +142,11 @@ namespace Wedgies
                     }
 
                 }
-                catch (TimeoutException) { }
+                catch (TimeoutException) 
+                {
+                    txtBoxLiveInput.Text += "\n" + DateTime.Now.ToString("M/d/y h:mm:ss tt") + 
+                                                 " Timeout Exception!\n";
+                }
             }
         }
 
