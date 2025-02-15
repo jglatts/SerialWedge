@@ -6,6 +6,7 @@ Can collect data from Serial, RS232, and RS232-via-USB industrial equipment.
 View all real time data as well. 
 
 Compatible with:
+* Barcode Readers
 * Balances and Scales
 * Meters
 * Gauges
@@ -31,5 +32,5 @@ Builds upon https://github.com/pormiston/SerialWedge
 
 
 
-## Why this is effective  
+## Why This Is Effective  
 ![funny_img](https://raw.githubusercontent.com/jglatts/SerialWedge/refs/heads/master/images/funny-c%23.jpg)

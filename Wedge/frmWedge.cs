@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO.Ports;
 using System.Threading;
+using System.Media;
 
 namespace Wedgies
 {
@@ -137,7 +138,11 @@ namespace Wedgies
                         {
                             SendKeys.SendWait(line);
                             if (inputBeep)
-                                Console.Beep(3500, 500);
+                            {
+                                // not getting called bc NO CONSOLE
+                                //Console.Beep(3500, 500);
+                                SystemSounds.Beep.Play();
+                            }
                             last_was_number = false;
                         }
                         else
