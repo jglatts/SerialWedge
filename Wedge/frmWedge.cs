@@ -52,8 +52,6 @@ namespace Wedgies
         {
             if (bRunning)
             {
-                // this will will cause the Completed event to fire
-                // so we don't have to call StartStop here
                 bRunning = false;
                 txtBoxLiveInput.Text = "";
             }
@@ -139,9 +137,9 @@ namespace Wedgies
                             SendKeys.SendWait(line);
                             if (inputBeep)
                             {
-                                // not getting called bc NO CONSOLE
-                                //Console.Beep(3500, 500);
-                                SystemSounds.Beep.Play();
+                                // bottleneck when calling Beep.Play()
+                                // this is running in a bkgrd worker
+                                //SystemSounds.Beep.Play();
                             }
                             last_was_number = false;
                         }
@@ -154,6 +152,8 @@ namespace Wedgies
                 }
                 catch (TimeoutException) { } 
             }
+            // this method will call StartStop() once complete
+            // we set the RunWorkerCompleted property to StartStop in ctor 
         }
 
         private void label1_Click(object sender, EventArgs e)
