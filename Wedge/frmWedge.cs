@@ -32,8 +32,8 @@ namespace Wedgies
             InitializeComponent();
             Populate();
             port = new SerialPort();
-            port.ReadTimeout = 500;
             port.WriteTimeout = 500;
+            port.ReadTimeout = 500;
 
             // event handlers
             chkOnOff.CheckedChanged += new EventHandler(chkOnOff_CheckedChanged);
@@ -75,7 +75,7 @@ namespace Wedgies
                 cboPort.Text = "NO PORTS FOUND";
             
             cboHandShake.DataSource = handShakes.Keys.ToArray();
-            cboHandShake.SelectedIndex = 2;
+            cboHandShake.SelectedIndex = 1;
             cboBaudRate.DataSource = bauds;
             cboBaudRate.SelectedIndex = 4;  
         }
@@ -84,7 +84,7 @@ namespace Wedgies
             ToggleForm(!chkOnOff.Checked);
             
             if (port.IsOpen) port.Close();
-           
+
             if (chkOnOff.Checked)
             {
                 try
@@ -92,11 +92,23 @@ namespace Wedgies
                     port.PortName = cboPort.SelectedItem + "";
                     port.BaudRate = (int)cboBaudRate.SelectedItem;
                     port.Handshake = handShakes[cboHandShake.SelectedItem.ToString()];
+
+                    // read more about rts\dtr
+                    // dtr seems to be needed for xonxoff
+                    // see stack overflow forums 
+
+                    // only getting data like here
+                    // indicator port settings
+                    port.RtsEnable = false;
+                    port.DtrEnable = true; // needed for xonxoff
+                    port.DataBits = 7;
+                    port.StopBits = StopBits.One;
+                    port.Parity = Parity.Even;
                     port.Open();
                     bRunning = true;
                     bgwInterceptWorker.RunWorkerAsync();
                 }
-                catch 
+                catch
                 {
                     MessageBox.Show("error opening port!");
                     chkOnOff.Checked = false;
@@ -115,42 +127,26 @@ namespace Wedgies
             // should allow user to change this at run time 
             bool last_was_number = false; 
 
+            // for indicator, we only get 1 datapoint so display it
             while (bRunning)
             {
                 try
                 {
+
                     string line = port.ReadLine();
-
-                    if (line.Contains("@"))
-                        continue;
-
-                    updateLiveInput(line);
-                    if (Double.TryParse(line, out double val))
-                    {
-                        if (val == 0)
-                        {
-                            continue;
-                        }
-
-                        if (last_was_number)
-                        {
-                            SendKeys.SendWait(line);
-                            if (inputBeep)
-                            {
-                                // bottleneck when calling Beep.Play()
-                                // this is running in a bkgrd worker
-                                //SystemSounds.Beep.Play();
-                            }
-                            last_was_number = false;
-                        }
-                        else
-                        {
-                            last_was_number = true;
-                        }
+                    line = line.Replace('?', ' ');
+                    string s = "";
+                    for (int i = 0; i < line.Length; i++) { 
+                        if (line[i] != ' ' && line[i] != 'i' && line[i] != 'n')
+                            s += line[i];
                     }
 
+                    SendKeys.SendWait(s);
+                    updateLiveInput(s);
                 }
-                catch (TimeoutException) { } 
+                catch (TimeoutException) 
+                {
+                } 
             }
             // this method will call StartStop() once complete
             // we set the RunWorkerCompleted property to StartStop in ctor 
