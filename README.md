@@ -31,6 +31,66 @@ Builds upon https://github.com/pormiston/SerialWedge
 2. Run the Wedge.exe application 
 
 
+## Creating a Custom Serial Reader for the Keyboard Wedge  
+
+This project provides a **serial keyboard wedge** that reads data from a serial device and simulates keyboard input.  
+To implement a **custom serial reader**, follow these steps:  
+
+---
+
+## 1. Create a New Class that Inherits `SerialReaderBase`  
+Your custom serial reader must be a **subclass of `SerialReaderBase`**.  
+This ensures it integrates smoothly with the wedge system.  
+
+### Example: Creating `MyDeviceSerialReader`  
+```csharp
+using System;
+using System.IO.Ports;
+using System.Windows.Forms;
+
+namespace Wedgies
+{
+    class MyDeviceSerialReader : SerialReaderBase
+    {
+        public MyDeviceSerialReader(SerialPort port, UpdateCallback callback)
+            : base(port, callback)
+        {
+        }
+
+        public override void worker()
+        {
+            try
+            {
+                // Read a line of data from the serial port
+                string line = port.ReadLine();
+
+                // Process the data as needed
+                if (string.IsNullOrEmpty(line))
+                    return;
+
+                // Example: Filter out unwanted characters
+                line = line.Replace("@", "");
+
+                // Send the processed data as keyboard input
+                SendKeys.SendWait(line);
+
+                // Invoke the callback to update UI or logs
+                updateCallback?.Invoke(line);
+            }
+            catch (TimeoutException)
+            {
+                // No data available, continue
+            }
+        }
+    }
+}
+```
+
+
+## 2. Instantiate and Use Your Custom Reader  
+In frmWedge.cs
+
+
 
 ## Why This Is Effective  
 ![funny_img](https://raw.githubusercontent.com/jglatts/SerialWedge/refs/heads/master/images/funny-c%23.jpg)

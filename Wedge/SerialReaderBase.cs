@@ -24,6 +24,13 @@ namespace Wedgies
             this.is_running = false;
         }
 
+        /*
+         *  default serial keyboard implementation
+         *  
+         *  to impmeplent a custom serial reader wedge:
+         *      - make a subclass of this class (SerialReaderBase)
+         *      - implement a worker() method that will read and interpret your data 
+         */
         public virtual void worker() 
         {
             string line = port.ReadLine();
