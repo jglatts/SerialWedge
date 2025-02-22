@@ -87,7 +87,9 @@ namespace Wedgies
 
 
 ## 2. Instantiate and Use Your Custom Reader  
-In frmWedge.cs
+In `frmwedge.cs`, you would typically instantiate your reader like this:  
+```csharp
+serialReader = new MyDeviceSerialReader(port, updateLiveInput);
 
 
 
