@@ -31,12 +31,11 @@ Builds upon https://github.com/pormiston/SerialWedge
 2. Run the Wedge.exe application 
 
 
+
+
 ## Creating a Custom Serial Reader for the Keyboard Wedge  
 
-This project provides a **serial keyboard wedge** that reads data from a serial device and simulates keyboard input.  
 To implement a **custom serial reader**, follow these steps:  
-
----
 
 ## 1. Create a New Class that Inherits `SerialReaderBase`  
 Your custom serial reader must be a **subclass of `SerialReaderBase`**.  
