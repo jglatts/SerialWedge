@@ -54,7 +54,6 @@
             this.cboPort.Name = "cboPort";
             this.cboPort.Size = new System.Drawing.Size(121, 21);
             this.cboPort.TabIndex = 0;
-            this.cboPort.SelectedIndexChanged += new System.EventHandler(this.cboPort_SelectedIndexChanged);
             // 
             // cboBaudRate
             // 
@@ -74,7 +73,6 @@
             this.label1.Size = new System.Drawing.Size(88, 15);
             this.label1.TabIndex = 3;
             this.label1.Text = "Port Number";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 

@@ -14,7 +14,8 @@ namespace Wedgies
 {
     public partial class frmWedge : Form
     {
-        private int[] bauds = {110, 300, 600, 1200, 2400, 4800, 9600, 14400, 19200, 38400, 57600, 115200};
+        private SerialPort port = null;
+        private SerialReaderBase serialreader; 
         private Dictionary<string, Handshake> handShakes = new Dictionary<string, Handshake>() 
         {
             { "None", Handshake.None },
@@ -23,22 +24,32 @@ namespace Wedgies
             { "RequestToSendXOnXOff", Handshake.RequestToSendXOnXOff }
 
         };
-        private bool bRunning = false;
-        private SerialPort port = null;
+        private int[] bauds = { 110, 300, 600, 1200, 2400, 4800, 9600, 14400, 19200, 38400, 57600, 115200 };
         private bool inputBeep = false;
 
         public frmWedge()
         {
             InitializeComponent();
             Populate();
+
+            // set the serial port
             port = new SerialPort();
             port.WriteTimeout = 500;
             port.ReadTimeout = 500;
-
+            
+            // set the serial reader implementation 
+            serialreader = new IndicatorSerialReader(port, updateLiveInput);
+            
+            // MircoVu serial reader immplementation
+            //serialreader = new MicroVuSerialReader(port, updateLiveInput);
+            
+            // default serial reader 
+            //serialreader = new SerialReaderBase(port, updateLiveInput);
+            
             // event handlers
             chkOnOff.CheckedChanged += new EventHandler(chkOnOff_CheckedChanged);
             FormClosing += new FormClosingEventHandler(frmWedge_FormClosing);
-            bgwInterceptWorker.DoWork += new DoWorkEventHandler(interceptBuffer);
+            bgwInterceptWorker.DoWork += new DoWorkEventHandler(serialreader.runner);
             bgwInterceptWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(StartStop);
             chkBeepOnInput.Checked = true;
         }
@@ -50,9 +61,9 @@ namespace Wedgies
 
         void chkOnOff_CheckedChanged(object sender, EventArgs e)
         {
-            if (bRunning)
+            if (serialreader.is_running)
             {
-                bRunning = false;
+                serialreader.is_running = false;
                 txtBoxLiveInput.Text = "";
             }
             else
@@ -79,6 +90,20 @@ namespace Wedgies
             cboBaudRate.DataSource = bauds;
             cboBaudRate.SelectedIndex = 4;  
         }
+
+        private void setAndOpenPort()
+        {
+            port.PortName = cboPort.SelectedItem + "";
+            port.BaudRate = (int)cboBaudRate.SelectedItem;
+            port.Handshake = handShakes[cboHandShake.SelectedItem.ToString()];
+            port.RtsEnable = false;
+            port.DtrEnable = true; // needed for xonxoff
+            port.DataBits = 7;
+            port.StopBits = StopBits.One;
+            port.Parity = Parity.Even;
+            port.Open();
+        }
+
         private void StartStop(object sender, RunWorkerCompletedEventArgs args)
         {
             ToggleForm(!chkOnOff.Checked);
@@ -89,23 +114,8 @@ namespace Wedgies
             {
                 try
                 {
-                    port.PortName = cboPort.SelectedItem + "";
-                    port.BaudRate = (int)cboBaudRate.SelectedItem;
-                    port.Handshake = handShakes[cboHandShake.SelectedItem.ToString()];
-
-                    // read more about rts\dtr
-                    // dtr seems to be needed for xonxoff
-                    // see stack overflow forums 
-
-                    // only getting data like here
-                    // indicator port settings
-                    port.RtsEnable = false;
-                    port.DtrEnable = true; // needed for xonxoff
-                    port.DataBits = 7;
-                    port.StopBits = StopBits.One;
-                    port.Parity = Parity.Even;
-                    port.Open();
-                    bRunning = true;
+                    setAndOpenPort();
+                    serialreader.is_running = true;
                     bgwInterceptWorker.RunWorkerAsync();
                 }
                 catch
@@ -115,51 +125,9 @@ namespace Wedgies
                 }
             }
         }
-
         private void updateLiveInput(string line)
         { 
             txtBoxLiveInput.Text += DateTime.Now.ToString("M/d/y h:mm:ss tt") + ">> " + line + "\n";
-        }
-
-        private void interceptBuffer(object sender, DoWorkEventArgs args)
-        {
-            // below alg will get the 2nd val sent (the ydata)
-            // should allow user to change this at run time 
-            bool last_was_number = false; 
-
-            // for indicator, we only get 1 datapoint so display it
-            while (bRunning)
-            {
-                try
-                {
-
-                    string line = port.ReadLine();
-                    line = line.Replace('?', ' ');
-                    string s = "";
-                    for (int i = 0; i < line.Length; i++) { 
-                        if (line[i] != ' ' && line[i] != 'i' && line[i] != 'n')
-                            s += line[i];
-                    }
-
-                    SendKeys.SendWait(s);
-                    updateLiveInput(s);
-                }
-                catch (TimeoutException) 
-                {
-                } 
-            }
-            // this method will call StartStop() once complete
-            // we set the RunWorkerCompleted property to StartStop in ctor 
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cboPort_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void chkBeepOnInput_CheckedChanged(object sender, EventArgs e)
