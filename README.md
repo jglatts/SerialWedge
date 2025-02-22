@@ -21,12 +21,12 @@ Builds upon https://github.com/pormiston/SerialWedge
 
 
 ## How To Run
-#### From Source
+### From Source
 1. Clone the repo
 2. Open the Wedge.sln solution file in Visual Studio
 3. Build and Run 
 
-#### From Github Releases 
+### From Github Releases 
 1. Dowload the assests from the releases tab
 2. Run the Wedge.exe application 
 
@@ -37,11 +37,11 @@ Builds upon https://github.com/pormiston/SerialWedge
 
 To implement a **custom serial reader**, follow these steps:  
 
-## 1. Create a New Class that Inherits `SerialReaderBase`  
+### 1. Create a New Class that Inherits `SerialReaderBase`  
 Your custom serial reader must be a **subclass of `SerialReaderBase`**.  
 This ensures it integrates smoothly with the wedge system.  
 
-### Example: Creating `MyDeviceSerialReader`  
+#### Example: Creating `MyDeviceSerialReader`  
 ```csharp
 using System;
 using System.IO.Ports;
@@ -86,11 +86,11 @@ namespace Wedgies
 ```
 
 
-## 2. Instantiate and Use Your Custom Reader  
+### 2. Instantiate and Use Your Custom Reader  
 In `frmwedge.cs`, you would typically instantiate your reader like this:  
 ```csharp
 serialReader = new MyDeviceSerialReader(port, updateLiveInput);
-
+```
 
 
 ## Why This Is Effective  
