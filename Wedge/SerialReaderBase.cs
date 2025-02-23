@@ -53,6 +53,12 @@ namespace Wedgies
 
         public void runner(object sender, DoWorkEventArgs args)
         {
+            if (!port.IsOpen)
+            { 
+                updateCallback?.Invoke("error!\nserial port not open!");
+                return;
+            }
+
             while (is_running)
             { 
                 worker();
