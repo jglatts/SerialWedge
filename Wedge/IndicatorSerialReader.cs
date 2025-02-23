@@ -22,6 +22,14 @@ namespace Wedgies
             this.port = port;
         }
 
+        public override void initPort()
+        {
+            port.RtsEnable = false;
+            port.DtrEnable = true; // needed for xonxoff
+            port.DataBits = 7;
+            port.StopBits = StopBits.One;
+            port.Parity = Parity.Even;
+        }
 
         public override void worker() 
         {

@@ -56,6 +56,16 @@ namespace Wedgies
         {
         }
 
+        public override void initPort()
+        {
+            // Configure serial port settings specific to your device
+            port.Parity = Parity.Even;
+            port.DataBits = 8;
+            port.StopBits = StopBits.One;
+            port.DtrEnable = true;
+            port.RtsEnable = false;
+        }
+
         public override void worker()
         {
             try
@@ -68,7 +78,7 @@ namespace Wedgies
                     return;
 
                 // Example: Filter out unwanted characters
-                line = line.Replace("@", "");
+                line = line.Replace("?", "");
 
                 // Send the processed data as keyboard input
                 SendKeys.SendWait(line);

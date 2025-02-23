@@ -96,11 +96,7 @@ namespace Wedgies
             port.PortName = cboPort.SelectedItem + "";
             port.BaudRate = (int)cboBaudRate.SelectedItem;
             port.Handshake = handShakes[cboHandShake.SelectedItem.ToString()];
-            port.RtsEnable = false;
-            port.DtrEnable = true; // needed for xonxoff
-            port.DataBits = 7;
-            port.StopBits = StopBits.One;
-            port.Parity = Parity.Even;
+            serialreader.initPort();
             port.Open();
         }
 

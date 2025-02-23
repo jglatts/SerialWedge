@@ -24,6 +24,15 @@ namespace Wedgies
             this.is_running = false;
         }
 
+        // default SerialPort settings 
+        // override this method to set custom
+        // serial port settings 
+        // i.e:
+        //      port.RtsEnable = true;
+        public virtual void initPort()
+        {
+        }
+
         /*
          *  default serial keyboard implementation
          *  

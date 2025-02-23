@@ -55,8 +55,11 @@
     <Compile Include="frmWedge.Designer.cs">
       <DependentUpon>frmWedge.cs</DependentUpon>
     </Compile>
+    <Compile Include="IndicatorSerialReader.cs" />
+    <Compile Include="MicroVuSerialReader.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SerialReaderBase.cs" />
     <EmbeddedResource Include="frmWedge.resx">
       <DependentUpon>frmWedge.cs</DependentUpon>
     </EmbeddedResource>
