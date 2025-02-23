@@ -23,7 +23,7 @@ namespace Wedgies
             this.updateCallback = updateCallback;
             this.is_running = false;
         }
-
+        
         // default SerialPort settings 
         // override this method to set custom
         // serial port settings 
@@ -42,9 +42,13 @@ namespace Wedgies
          */
         public virtual void worker() 
         {
-            string line = port.ReadLine();
-            SendKeys.SendWait(line);
-            updateCallback?.Invoke(line);
+            try
+            {
+                string line = port.ReadLine();
+                SendKeys.SendWait(line);
+                updateCallback?.Invoke(line);
+            }
+            catch (TimeoutException) { }
         }
 
         public void runner(object sender, DoWorkEventArgs args)
