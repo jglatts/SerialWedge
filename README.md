@@ -43,6 +43,7 @@ Builds upon https://github.com/pormiston/SerialWedge
    ```sh
    git clone https://github.com/jglatts/SerialWedge.git
    ```
+2. **Open** the SLN file in VisualStudio
 
 
 ## Creating a Custom Serial Reader for the Keyboard Wedge  
