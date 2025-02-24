@@ -33,17 +33,16 @@ Builds upon https://github.com/pormiston/SerialWedge
 
 ## How To Run  
 
-### ▶️ From GitHub Releases (Recommended)  
+### From GitHub Releases 
 1. **Go to the Releases page**: [SerialWedge Releases](https://github.com/jglatts/SerialWedge/releases)  
 2. **Download** the latest `Wedge.exe` from the **Assets** section  
 3. **Run** the application (no installation required)  
 
-### 🖥️ From Source (For Developers)  
+### From Source  
 1. **Clone the repo:**  
    ```sh
    git clone https://github.com/jglatts/SerialWedge.git
-
-
+   ```
 
 
 ## Creating a Custom Serial Reader for the Keyboard Wedge  
