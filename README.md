@@ -12,7 +12,9 @@ Supports **real-time data viewing** and **custom data handling**.
 ✅ **Customizable serial data processing** via `SerialReaderBase`  
 ✅ Supports **multiple baud rates and handshake methods**  
 
+
 ---
+
 
 ## Compatible Devices  
 
@@ -27,8 +29,15 @@ Supports **real-time data viewing** and **custom data handling**.
 
 Builds upon https://github.com/pormiston/SerialWedge
 
+
+---
+
+
 ## System Screenshot
 ![system_gui](https://raw.githubusercontent.com/jglatts/SerialWedge/refs/heads/master/images/gui2.png)
+
+
+---
 
 
 ## How To Run  
@@ -44,6 +53,9 @@ Builds upon https://github.com/pormiston/SerialWedge
    git clone https://github.com/jglatts/SerialWedge.git
    ```
 2. **Open** the SLN file in VisualStudio
+
+
+---
 
 
 ## Creating a Custom Serial Reader for the Keyboard Wedge  
@@ -123,6 +135,7 @@ public frmWedge()
 }
 ```
 
+---
 
 ## Why This Is Effective  
 ![funny_img](https://raw.githubusercontent.com/jglatts/SerialWedge/refs/heads/master/images/funny-c%23.jpg)
