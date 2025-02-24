@@ -23,14 +23,19 @@ namespace Wedgies
             this.updateCallback = updateCallback;
             this.is_running = false;
         }
-        
-        // default SerialPort settings 
-        // override this method to set custom
-        // serial port settings 
-        // i.e:
-        //      port.RtsEnable = true;
+
+        /*
+         * default SerialPort settings 
+         * 
+         * override this method to set custom
+         * serial port settings 
+         * i.e:
+         *      port.RtsEnable = true;
+         *
+         */
         public virtual void initPort()
         {
+
         }
 
         /*
