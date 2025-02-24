@@ -76,14 +76,23 @@ namespace Wedgies
 {
     class MyDeviceSerialReader : SerialReaderBase
     {
+
+        /*
+            Constructor for the custom serial reader.
+            Calls the base class constructor to initialize the serial port and callback.
+        */
         public MyDeviceSerialReader(SerialPort port, UpdateCallback callback)
             : base(port, callback)
         {
         }
 
+        /*
+            Initialize serial port settings specific to your device.
+            Override this method to configure parameters like parity, data bits, stop bits, etc.
+        */
         public override void initPort()
         {
-            // Configure serial port settings specific to your device
+            // example usage:
             port.Parity = Parity.Even;
             port.DataBits = 8;
             port.StopBits = StopBits.One;
@@ -91,6 +100,12 @@ namespace Wedgies
             port.RtsEnable = false;
         }
 
+        /*
+            Core method for reading and processing serial data.
+
+            This method is called repeatedly in a loop while the reader is running.
+            Override this method to customize how data is interpreted and processed.
+        */
         public override void worker()
         {
             try
