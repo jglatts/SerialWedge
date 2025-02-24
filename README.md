@@ -5,7 +5,7 @@ Sends serial port data to any application (e.g., Excel, Notepad, ERP systems).
 Can collect data from **Serial, RS232, and RS232-via-USB** industrial equipment.  
 Supports **real-time data viewing** and **custom data handling**.  
 
-## 🚀 Features  
+## Features  
 ✅ Sends serial data as **keyboard input**  
 ✅ Works with **RS232, USB-to-Serial devices, and industrial equipment**  
 ✅ **Real-time data viewing** for monitoring incoming data  
@@ -14,7 +14,7 @@ Supports **real-time data viewing** and **custom data handling**.
 
 ---
 
-## 🔧 Compatible Devices  
+## Compatible Devices  
 
 | Device Type       | Examples |
 |------------------|-----------------------------------|
@@ -31,15 +31,17 @@ Builds upon https://github.com/pormiston/SerialWedge
 ![system_gui](https://raw.githubusercontent.com/jglatts/SerialWedge/refs/heads/master/images/gui2.png)
 
 
-## How To Run
-### From Source
-1. Clone the repo
-2. Open the Wedge.sln solution file in Visual Studio
-3. Build and Run 
+## How To Run  
 
-### From Github Releases 
-1. Dowload the assests from the releases tab
-2. Run the Wedge.exe application 
+### ▶️ From GitHub Releases (Recommended)  
+1. **Go to the Releases page**: [SerialWedge Releases](https://github.com/jglatts/SerialWedge/releases)  
+2. **Download** the latest `Wedge.exe` from the **Assets** section  
+3. **Run** the application (no installation required)  
+
+### 🖥️ From Source (For Developers)  
+1. **Clone the repo:**  
+   ```sh
+   git clone https://github.com/jglatts/SerialWedge.git
 
 
 
