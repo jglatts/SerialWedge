@@ -1,18 +1,29 @@
-
+﻿
 # Simple Serial Data Keyboard Wedge
 
-Sends data from serial port to any application, like excel for example.  
-Can collect data from Serial, RS232, and RS232-via-USB industrial equipment.  
-View all real time data as well. 
+Sends serial port data to any application (e.g., Excel, Notepad, ERP systems).  
+Can collect data from **Serial, RS232, and RS232-via-USB** industrial equipment.  
+Supports **real-time data viewing** and **custom data handling**.  
 
-Compatible with:
-* Barcode Readers
-* Balances and Scales
-* Meters
-* Gauges
-* Calipers
-* Sensors 
-* And More
+## 🚀 Features  
+✅ Sends serial data as **keyboard input**  
+✅ Works with **RS232, USB-to-Serial devices, and industrial equipment**  
+✅ **Real-time data viewing** for monitoring incoming data  
+✅ **Customizable serial data processing** via `SerialReaderBase`  
+✅ Supports **multiple baud rates and handshake methods**  
+
+---
+
+## 🔧 Compatible Devices  
+
+| Device Type       | Examples |
+|------------------|-----------------------------------|
+| **Barcode Readers**  | Handheld scanners, POS systems  |
+| **Weighing Scales**  | Industrial balances, lab scales |
+| **Meters**          | Voltage meters, pressure gauges  |
+| **Calipers**         | Digital calipers, micrometers   |
+| **Sensors**          | Temperature, force, pH sensors  |
+| **Custom Devices**   | Any RS232-based industrial tool |
 
 Builds upon https://github.com/pormiston/SerialWedge
 
