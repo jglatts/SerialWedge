@@ -1,4 +1,22 @@
-﻿using System;
+﻿/*
+ *       Serial Data Keyboard Wedge
+ *       
+ *       Sends serial port data to any application (e.g., Excel, Notepad, ERP systems).
+ *       Can collect data from Serial, RS232, and RS232-via-USB industrial equipment.
+ *       Supports real-time data viewing and custom data handling.
+ *
+ *        Features:
+ *           Sends serial data as keyboard input
+ *           Works with RS232, USB-to-Serial devices, and industrial equipment
+ *           Real-time data viewing for monitoring incoming data
+ *           Customizable serial data processing via SerialReaderBase
+ *           Supports multiple baud rates and handshake methods 
+ *           
+ *       ToDo:
+ *          Add data filtering options
+ *          
+ */
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -36,16 +54,16 @@ namespace Wedgies
             port = new SerialPort();
             port.WriteTimeout = 500;
             port.ReadTimeout = 500;
-            
+
             // set the serial reader implementation 
-            serialreader = new IndicatorSerialReader(port, updateLiveInput);
-            
+            setSerialReader(new IndicatorSerialReader(port, updateLiveInput));
+
             // MircoVu serial reader immplementation
-            //serialreader = new MicroVuSerialReader(port, updateLiveInput);
-            
+            //setSerialReader(new MicroVuSerialReader(port, updateLiveInput));
+
             // default serial reader 
-            //serialreader = new SerialReaderBase(port, updateLiveInput);
-            
+            //setSerialReader(new SerialReaderBase(port, updateLiveInput));
+
             // event handlers
             chkOnOff.CheckedChanged += new EventHandler(chkOnOff_CheckedChanged);
             FormClosing += new FormClosingEventHandler(frmWedge_FormClosing);
@@ -54,12 +72,17 @@ namespace Wedgies
             chkBeepOnInput.Checked = true;
         }
 
-        void frmWedge_FormClosing(object sender, FormClosingEventArgs e)
+        public void setSerialReader(SerialReaderBase serialReaderImpl)
+        {
+            serialreader = serialReaderImpl;
+        }
+
+        private void frmWedge_FormClosing(object sender, FormClosingEventArgs e)
         {
             chkOnOff.Checked = false;
         }
 
-        void chkOnOff_CheckedChanged(object sender, EventArgs e)
+        private void chkOnOff_CheckedChanged(object sender, EventArgs e)
         {
             if (serialreader.is_running)
             {

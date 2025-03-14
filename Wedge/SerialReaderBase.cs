@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Wedgies
 {
-    class SerialReaderBase
+    public class SerialReaderBase
     {
         public delegate void UpdateCallback(string s);
 
