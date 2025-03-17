@@ -58,7 +58,7 @@ namespace Wedgies
                 ret = true;
             }
 
-            delim = mainForm.btnTabDelim.Checked ? "\t" : "\n";
+            delim = mainForm.btnTabDelim.Checked ? "\t" : "\r\n";
 
             return ret;
         }
@@ -80,11 +80,6 @@ namespace Wedgies
                 
                 if (Double.TryParse(line, out double val))
                 {
-                    if (val == 0)
-                    {
-                        return;
-                    }
-
                     all_data.Add(val);
                     if (all_data.Count == 3)
                     {

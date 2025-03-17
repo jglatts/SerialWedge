@@ -76,8 +76,8 @@ namespace Wedgies
 
             // MircoVu CMM
             MicroVuSerialReader microVu = new MicroVuSerialReader(port, updateLiveInput);
-            chkGetXData.Checked = true;
-            btnTabDelim.Checked = true;
+            chkGetYData.Checked = true;
+            btnNewLineDelim.Checked = true;
             microVu.setForm(this);
             serialreader = microVu;
 
@@ -120,7 +120,7 @@ namespace Wedgies
             cboHandShake.DataSource = handShakes.Keys.ToArray();
             cboHandShake.SelectedIndex = 2;
             cboBaudRate.DataSource = bauds;
-            cboBaudRate.SelectedIndex = 4;  
+            cboBaudRate.SelectedIndex = 4;
         }
 
         private void setAndOpenPort()
