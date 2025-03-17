@@ -65,8 +65,9 @@ namespace Wedgies
             // MircoVu serial reader implementation
             MicroVuSerialReader microVu = new MicroVuSerialReader(port, updateLiveInput);
             chkGetXData.Checked = true;
+            btnTabDelim.Checked = true;
             microVu.setForm(this);
-            setSerialReader(microVu);
+            setSerialReader((SerialReaderBase)microVu);
 
             // default serial reader 
             //setSerialReader(new SerialReaderBase(port, updateLiveInput));
@@ -115,8 +116,9 @@ namespace Wedgies
             else
                 cboPort.Text = "NO PORTS FOUND";
             
+            // should be set by the impl
             cboHandShake.DataSource = handShakes.Keys.ToArray();
-            cboHandShake.SelectedIndex = 1;
+            cboHandShake.SelectedIndex = 2;
             cboBaudRate.DataSource = bauds;
             cboBaudRate.SelectedIndex = 4;  
         }
@@ -159,6 +161,24 @@ namespace Wedgies
         private void chkBeepOnInput_CheckedChanged(object sender, EventArgs e)
         {
             inputBeep = chkBeepOnInput.Checked;
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chkBoxNewLine_CheckedChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void chkBoxTabDelimit_CheckedChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

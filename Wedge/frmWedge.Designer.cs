@@ -45,10 +45,15 @@
             this.tabDataFilter = new System.Windows.Forms.TabPage();
             this.chkGetYData = new System.Windows.Forms.CheckBox();
             this.chkGetXData = new System.Windows.Forms.CheckBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnTabDelim = new System.Windows.Forms.RadioButton();
+            this.btnNewLineDelim = new System.Windows.Forms.RadioButton();
             this.tabSerialSettings.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabDataFilter.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // cboPort
@@ -114,7 +119,7 @@
             this.tabSerialSettings.Controls.Add(this.tabPage2);
             this.tabSerialSettings.Controls.Add(this.tabDataFilter);
             this.tabSerialSettings.Location = new System.Drawing.Point(11, -1);
-            this.tabSerialSettings.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabSerialSettings.Margin = new System.Windows.Forms.Padding(2);
             this.tabSerialSettings.Name = "tabSerialSettings";
             this.tabSerialSettings.SelectedIndex = 0;
             this.tabSerialSettings.Size = new System.Drawing.Size(384, 307);
@@ -131,9 +136,9 @@
             this.tabPage1.Controls.Add(this.cboBaudRate);
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(2);
             this.tabPage1.Size = new System.Drawing.Size(376, 281);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Serial Settings";
@@ -143,7 +148,7 @@
             // 
             this.chkBeepOnInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkBeepOnInput.Location = new System.Drawing.Point(141, 153);
-            this.chkBeepOnInput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chkBeepOnInput.Margin = new System.Windows.Forms.Padding(2);
             this.chkBeepOnInput.Name = "chkBeepOnInput";
             this.chkBeepOnInput.Size = new System.Drawing.Size(174, 53);
             this.chkBeepOnInput.TabIndex = 8;
@@ -167,9 +172,9 @@
             // 
             this.tabPage2.Controls.Add(this.txtBoxLiveInput);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(2);
             this.tabPage2.Size = new System.Drawing.Size(376, 281);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Live Input";
@@ -178,7 +183,7 @@
             // txtBoxLiveInput
             // 
             this.txtBoxLiveInput.Location = new System.Drawing.Point(0, 0);
-            this.txtBoxLiveInput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtBoxLiveInput.Margin = new System.Windows.Forms.Padding(2);
             this.txtBoxLiveInput.Multiline = true;
             this.txtBoxLiveInput.Name = "txtBoxLiveInput";
             this.txtBoxLiveInput.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -187,8 +192,10 @@
             // 
             // tabDataFilter
             // 
+            this.tabDataFilter.Controls.Add(this.groupBox2);
             this.tabDataFilter.Controls.Add(this.chkGetYData);
             this.tabDataFilter.Controls.Add(this.chkGetXData);
+            this.tabDataFilter.Controls.Add(this.groupBox1);
             this.tabDataFilter.Location = new System.Drawing.Point(4, 22);
             this.tabDataFilter.Margin = new System.Windows.Forms.Padding(2);
             this.tabDataFilter.Name = "tabDataFilter";
@@ -200,9 +207,9 @@
             // chkGetYData
             // 
             this.chkGetYData.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkGetYData.Location = new System.Drawing.Point(119, 128);
+            this.chkGetYData.Location = new System.Drawing.Point(125, 71);
             this.chkGetYData.Name = "chkGetYData";
-            this.chkGetYData.Size = new System.Drawing.Size(199, 67);
+            this.chkGetYData.Size = new System.Drawing.Size(150, 50);
             this.chkGetYData.TabIndex = 1;
             this.chkGetYData.Text = "Get Y-Data";
             this.chkGetYData.UseVisualStyleBackColor = true;
@@ -210,12 +217,58 @@
             // chkGetXData
             // 
             this.chkGetXData.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkGetXData.Location = new System.Drawing.Point(119, 73);
+            this.chkGetXData.Location = new System.Drawing.Point(125, 29);
             this.chkGetXData.Name = "chkGetXData";
-            this.chkGetXData.Size = new System.Drawing.Size(199, 67);
+            this.chkGetXData.Size = new System.Drawing.Size(150, 49);
             this.chkGetXData.TabIndex = 0;
             this.chkGetXData.Text = "Get X-Data";
             this.chkGetXData.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Location = new System.Drawing.Point(72, 15);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(228, 112);
+            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Data Output";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.btnNewLineDelim);
+            this.groupBox2.Controls.Add(this.btnTabDelim);
+            this.groupBox2.Location = new System.Drawing.Point(72, 149);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(228, 110);
+            this.groupBox2.TabIndex = 3;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Delimiter";
+            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
+            // 
+            // btnTabDelim
+            // 
+            this.btnTabDelim.AutoSize = true;
+            this.btnTabDelim.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTabDelim.Location = new System.Drawing.Point(53, 23);
+            this.btnTabDelim.Name = "btnTabDelim";
+            this.btnTabDelim.Size = new System.Drawing.Size(54, 24);
+            this.btnTabDelim.TabIndex = 0;
+            this.btnTabDelim.TabStop = true;
+            this.btnTabDelim.Text = "Tab";
+            this.btnTabDelim.UseVisualStyleBackColor = true;
+            // 
+            // btnNewLineDelim
+            // 
+            this.btnNewLineDelim.AutoSize = true;
+            this.btnNewLineDelim.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNewLineDelim.Location = new System.Drawing.Point(53, 65);
+            this.btnNewLineDelim.Name = "btnNewLineDelim";
+            this.btnNewLineDelim.Size = new System.Drawing.Size(92, 24);
+            this.btnNewLineDelim.TabIndex = 1;
+            this.btnNewLineDelim.TabStop = true;
+            this.btnNewLineDelim.Text = "New Line";
+            this.btnNewLineDelim.UseVisualStyleBackColor = true;
             // 
             // frmWedge
             // 
@@ -233,6 +286,8 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tabDataFilter.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -255,6 +310,10 @@
         private System.Windows.Forms.TabPage tabDataFilter;
         public System.Windows.Forms.CheckBox chkGetYData;
         public System.Windows.Forms.CheckBox chkGetXData;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        public System.Windows.Forms.RadioButton btnTabDelim;
+        public System.Windows.Forms.RadioButton btnNewLineDelim;
     }
 }
 

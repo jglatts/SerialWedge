@@ -16,6 +16,8 @@ namespace Wedgies
         private bool get_xy_data;
         private frmWedge mainForm;
         private List<double> xy_data;
+        private List<double> all_data;
+        private string delim;
 
         public MicroVuSerialReader(SerialPort port, UpdateCallback callback): 
             base(port, callback) 
@@ -25,6 +27,8 @@ namespace Wedgies
             get_y_data = false;
             get_xy_data = false;
             xy_data = new List<double>();
+            all_data = new List<double>();
+            delim = " ";
         }
 
         public void setForm(frmWedge form)
@@ -39,18 +43,26 @@ namespace Wedgies
             if (mainForm.chkGetXData.Checked && mainForm.chkGetYData.Checked)
             {
                 get_xy_data = true;
+                get_y_data = false;
+                get_x_data = false;
                 ret = true;
             }
             else if (mainForm.chkGetXData.Checked)
             {
                 get_x_data = true;
+                get_xy_data = false;
+                get_y_data = false;
                 ret = true; 
             }
             else if (mainForm.chkGetYData.Checked)
             { 
                 get_y_data = true;
+                get_x_data = false;
+                get_xy_data = false;
                 ret = true;
             }
+
+            delim = mainForm.btnTabDelim.Checked ? "\t" : "\n";
 
             return ret;
         }
@@ -69,8 +81,7 @@ namespace Wedgies
 
                 if (line.Contains("@"))
                     return;
-
-                updateCallback?.Invoke(line);
+                
                 if (Double.TryParse(line, out double val))
                 {
                     if (val == 0)
@@ -78,41 +89,21 @@ namespace Wedgies
                         return;
                     }
 
-                    if (get_y_data)
+                    all_data.Add(val);
+                    if (all_data.Count == 3)
                     {
-                        if (last_was_number)
-                        {
-                            SendKeys.SendWait(line);
-                            last_was_number = false;
-                        }
-                        else
-                        {
-                            last_was_number = true;
-                        }
-                    }
-                    else if (get_x_data)
-                    {
-                        if (!last_was_number)
-                        {
-                            SendKeys.SendWait(line);
-                            last_was_number = true;
-                        }
-                        else
-                        {
-                            last_was_number = false;
-                        }
-                    }
-                    else if (get_xy_data)
-                    {
-                        xy_data.Add(val);
-                        if (xy_data.Count == 2)
-                        {
-                            // will need to use either tabs or newline
-                            // to get correct output in excel
-                            string s = xy_data[0] + "\t" + xy_data[1] + "\t";
-                            SendKeys.SendWait(line);
-                            xy_data.Clear();
-                        }
+                        string data_str = "";
+                        
+                        if (get_xy_data)
+                            data_str = all_data[0] + delim + all_data[1] + delim;
+                        else if (get_y_data)
+                            data_str = all_data[1] + delim;
+                        else if (get_x_data)
+                            data_str = all_data[0] + delim;
+                        
+                        SendKeys.SendWait(data_str);
+                        //updateCallback?.Invoke(data_str);
+                        all_data.Clear();   
                     }
                 }
 
