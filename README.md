@@ -66,6 +66,9 @@ To implement a **custom serial reader**, follow these steps:
 Your custom serial reader must be a **subclass of `SerialReaderBase`**.  
 This ensures it integrates smoothly with the wedge system.  
 
+**Important:** The `worker()` method is essential—it runs in a loop and continuously reads, processes, and sends serial data as keyboard input. 
+Without properly implementing this method, your device will not function within the wedge system.
+
 #### Example: Creating `MyDeviceSerialReader`  
 ```csharp
 using System;
