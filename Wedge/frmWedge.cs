@@ -55,11 +55,18 @@ namespace Wedgies
             port.WriteTimeout = 500;
             port.ReadTimeout = 500;
 
-            // set the serial reader implementation 
-            setSerialReader(new IndicatorSerialReader(port, updateLiveInput));
+            // todo:
+            //  move these constructors to the impl class and have a
+            //  a static factory method to get the new SerialReader object
 
-            // MircoVu serial reader immplementation
-            //setSerialReader(new MicroVuSerialReader(port, updateLiveInput));
+            // set the serial reader implementation 
+            //setSerialReader(new IndicatorSerialReader(port, updateLiveInput));
+
+            // MircoVu serial reader implementation
+            MicroVuSerialReader microVu = new MicroVuSerialReader(port, updateLiveInput);
+            chkGetXData.Checked = true;
+            microVu.setForm(this);
+            setSerialReader(microVu);
 
             // default serial reader 
             //setSerialReader(new SerialReaderBase(port, updateLiveInput));

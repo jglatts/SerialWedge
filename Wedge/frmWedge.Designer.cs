@@ -42,9 +42,13 @@
             this.chkOnOff = new System.Windows.Forms.CheckBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.txtBoxLiveInput = new System.Windows.Forms.TextBox();
+            this.tabDataFilter = new System.Windows.Forms.TabPage();
+            this.chkGetYData = new System.Windows.Forms.CheckBox();
+            this.chkGetXData = new System.Windows.Forms.CheckBox();
             this.tabSerialSettings.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabDataFilter.SuspendLayout();
             this.SuspendLayout();
             // 
             // cboPort
@@ -108,11 +112,12 @@
             // 
             this.tabSerialSettings.Controls.Add(this.tabPage1);
             this.tabSerialSettings.Controls.Add(this.tabPage2);
-            this.tabSerialSettings.Location = new System.Drawing.Point(0, -1);
+            this.tabSerialSettings.Controls.Add(this.tabDataFilter);
+            this.tabSerialSettings.Location = new System.Drawing.Point(11, -1);
             this.tabSerialSettings.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabSerialSettings.Name = "tabSerialSettings";
             this.tabSerialSettings.SelectedIndex = 0;
-            this.tabSerialSettings.Size = new System.Drawing.Size(395, 307);
+            this.tabSerialSettings.Size = new System.Drawing.Size(384, 307);
             this.tabSerialSettings.TabIndex = 7;
             // 
             // tabPage1
@@ -129,7 +134,7 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.tabPage1.Size = new System.Drawing.Size(387, 281);
+            this.tabPage1.Size = new System.Drawing.Size(376, 281);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Serial Settings";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -165,7 +170,7 @@
             this.tabPage2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.tabPage2.Size = new System.Drawing.Size(387, 281);
+            this.tabPage2.Size = new System.Drawing.Size(376, 281);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Live Input";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -180,11 +185,43 @@
             this.txtBoxLiveInput.Size = new System.Drawing.Size(389, 287);
             this.txtBoxLiveInput.TabIndex = 0;
             // 
+            // tabDataFilter
+            // 
+            this.tabDataFilter.Controls.Add(this.chkGetYData);
+            this.tabDataFilter.Controls.Add(this.chkGetXData);
+            this.tabDataFilter.Location = new System.Drawing.Point(4, 22);
+            this.tabDataFilter.Margin = new System.Windows.Forms.Padding(2);
+            this.tabDataFilter.Name = "tabDataFilter";
+            this.tabDataFilter.Size = new System.Drawing.Size(376, 281);
+            this.tabDataFilter.TabIndex = 2;
+            this.tabDataFilter.Text = "Data Filtering";
+            this.tabDataFilter.UseVisualStyleBackColor = true;
+            // 
+            // chkGetYData
+            // 
+            this.chkGetYData.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkGetYData.Location = new System.Drawing.Point(119, 128);
+            this.chkGetYData.Name = "chkGetYData";
+            this.chkGetYData.Size = new System.Drawing.Size(199, 67);
+            this.chkGetYData.TabIndex = 1;
+            this.chkGetYData.Text = "Get Y-Data";
+            this.chkGetYData.UseVisualStyleBackColor = true;
+            // 
+            // chkGetXData
+            // 
+            this.chkGetXData.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkGetXData.Location = new System.Drawing.Point(119, 73);
+            this.chkGetXData.Name = "chkGetXData";
+            this.chkGetXData.Size = new System.Drawing.Size(199, 67);
+            this.chkGetXData.TabIndex = 0;
+            this.chkGetXData.Text = "Get X-Data";
+            this.chkGetXData.UseVisualStyleBackColor = true;
+            // 
             // frmWedge
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(391, 304);
+            this.ClientSize = new System.Drawing.Size(408, 310);
             this.Controls.Add(this.tabSerialSettings);
             this.HelpButton = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -195,6 +232,7 @@
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.tabDataFilter.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -214,6 +252,9 @@
         private System.Windows.Forms.TextBox txtBoxLiveInput;
         private System.Windows.Forms.CheckBox chkOnOff;
         private System.Windows.Forms.CheckBox chkBeepOnInput;
+        private System.Windows.Forms.TabPage tabDataFilter;
+        public System.Windows.Forms.CheckBox chkGetYData;
+        public System.Windows.Forms.CheckBox chkGetXData;
     }
 }
 
