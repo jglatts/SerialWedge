@@ -26,25 +26,10 @@ namespace Wedgies
 
         public PortSettings(string handshake, int baud)
         {
-            bool found = false;
-            string[] keys = handShakes.Keys.ToArray();
-
-            for (int i = 0; i < keys.Length; i++)
-            {
-                if (handshake.Equals(keys[i]))
-                {
-                    found = true;
-                    break;
-                }
-            }
-
-            if (!found)
-            {
-                handshake = "None";
-            }
-
-            this.handshake = handshake;
-            this.baud = baud;
+            string[] check = handShakes.Keys.ToArray().Where(k => (k == handshake)).ToArray();
+            int[] baud_check = bauds.Where(b => (b == baud)).ToArray();
+            this.handshake = check.Length > 0 ? handshake : "None";
+            this.baud = baud_check.Length > 0 ? baud : 9600;
         }
 
         public PortSettings()

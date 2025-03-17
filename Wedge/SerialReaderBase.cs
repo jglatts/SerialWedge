@@ -46,7 +46,7 @@ namespace Wedgies
          */
         public virtual PortSettings getPortSettings()
         { 
-            return new PortSettings("None", 9600);
+            return new PortSettings("None", 115200);
         }
 
         /*

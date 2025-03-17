@@ -73,7 +73,7 @@ namespace Wedgies
             serialreader = microVu;
 
             // default serial reader 
-            //serialreader = new SerialReaderBase(port, updateLiveInput));
+            //serialreader = new SerialReaderBase(port, updateLiveInput);
         }
 
         private void frmWedge_FormClosing(object sender, FormClosingEventArgs e)
