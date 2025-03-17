@@ -113,7 +113,7 @@ namespace Wedgies
             Core method for reading and processing serial data.
 
             This method is called repeatedly in a loop while the reader is running.
-            Use this method to customize how data is interpreted and processed for your implementation. 
+            Use this method to customize how data is interpreted and processed. 
         */
         public override void worker()
         {
