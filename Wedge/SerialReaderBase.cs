@@ -18,17 +18,17 @@ namespace Wedgies
         public bool is_running;
 
         public SerialReaderBase(SerialPort port, UpdateCallback updateCallback)
-        { 
+        {
             this.port = port;
             this.updateCallback = updateCallback;
             this.is_running = false;
         }
 
         /*
-         * default SerialPort settings 
+         * default SerialPort init method
          * 
          * override this method to set custom
-         * serial port settings 
+         * serial port parameters
          * i.e:
          *      port.RtsEnable = true;
          *
@@ -36,6 +36,17 @@ namespace Wedgies
         public virtual void initPort()
         {
 
+        }
+
+        /*
+         *  default port settings
+         *  
+         *  this will load the GUI on startup with impl. specfic port details
+         *  override this to implement your own
+         */
+        public virtual PortSettings getPortSettings()
+        { 
+            return new PortSettings("None", 9600);
         }
 
         /*

@@ -17,6 +17,8 @@ namespace Wedgies
         private List<double> all_data;
         private string delim;
 
+        // micro vu = REQUESTTOSEND
+
         public MicroVuSerialReader(SerialPort port, UpdateCallback callback): 
             base(port, callback) 
         {
@@ -63,6 +65,11 @@ namespace Wedgies
             return ret;
         }
 
+        public override PortSettings getPortSettings()
+        {
+            return new PortSettings("RequestToSend", 2400);
+        }
+
         public override void worker()
         {
             try
@@ -74,7 +81,6 @@ namespace Wedgies
                 }
 
                 string line = port.ReadLine();
-
                 if (line.Contains("@"))
                     return;
                 

@@ -31,6 +31,11 @@ namespace Wedgies
             port.Parity = Parity.Even;
         }
 
+        public override PortSettings getPortSettings()
+        {
+            return new PortSettings("XOnXOff", 2400);
+        }
+
         public override void worker() 
         {
             try

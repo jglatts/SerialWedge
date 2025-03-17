@@ -34,22 +34,12 @@ namespace Wedgies
     {
         private SerialPort port = null;
         private SerialReaderBase serialreader; 
-        private Dictionary<string, Handshake> handShakes = new Dictionary<string, Handshake>() 
-        {
-            { "None", Handshake.None },
-            { "XOnXOff", Handshake.XOnXOff },
-            { "RequestToSend", Handshake.RequestToSend },
-            { "RequestToSendXOnXOff", Handshake.RequestToSendXOnXOff }
-
-        };
-        private int[] bauds = { 110, 300, 600, 1200, 2400, 4800, 9600, 14400, 19200, 38400, 57600, 115200 };
         private bool inputBeep = false;
 
         public frmWedge()
         {
             // set Form objects
             InitializeComponent();
-            Populate();
 
             // set the serial port
             port = new SerialPort();
@@ -65,6 +55,9 @@ namespace Wedgies
             bgwInterceptWorker.DoWork += new DoWorkEventHandler(serialreader.runner);
             bgwInterceptWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(StartStop);
             chkBeepOnInput.Checked = true;
+
+            // set Form objects with impl. specific details
+            Populate();
         }
 
         public void setSerialReader()
@@ -114,18 +107,18 @@ namespace Wedgies
             else
                 cboPort.Text = "NO PORTS FOUND";
             
-            // should be set by the impl
-            cboHandShake.DataSource = handShakes.Keys.ToArray();
-            cboHandShake.SelectedIndex = 2;
-            cboBaudRate.DataSource = bauds;
-            cboBaudRate.SelectedIndex = 4;
+            PortSettings settings = serialreader.getPortSettings();
+            cboHandShake.DataSource = PortSettings.handShakes.Keys.ToArray();
+            cboBaudRate.DataSource = PortSettings.bauds;
+            cboHandShake.SelectedIndex = Array.IndexOf(PortSettings.handShakes.Keys.ToArray(), settings.handshake);
+            cboBaudRate.SelectedIndex = Array.IndexOf(PortSettings.bauds, settings.baud);
         }
 
         private void setAndOpenPort()
         {
             port.PortName = cboPort.SelectedItem + "";
             port.BaudRate = (int)cboBaudRate.SelectedItem;
-            port.Handshake = handShakes[cboHandShake.SelectedItem.ToString()];
+            port.Handshake = PortSettings.handShakes[cboHandShake.SelectedItem.ToString()];
             serialreader.initPort();
             port.Open();
         }
