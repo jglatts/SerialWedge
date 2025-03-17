@@ -69,8 +69,6 @@ namespace Wedgies
 
         public void setSerialReader()
         {
-            // set the serial reader implementation 
-            
             // Indicator Machine ( Drop-Down Gauge )
             //serialreader = new IndicatorSerialReader(port, updateLiveInput);
 

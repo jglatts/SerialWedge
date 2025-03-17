@@ -45,10 +45,7 @@ namespace Wedgies
                 SendKeys.SendWait(formatted_line);
                 updateCallback?.Invoke(formatted_line);
             }
-            catch (TimeoutException)
-            {
-            }
-
+            catch (TimeoutException) { }
         }
     
     }
