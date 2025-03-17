@@ -87,8 +87,16 @@ namespace Wedgies
         }
 
         /*
+            Serial Port settings (handshake and baud) for your implementation. 
+            This will load the GUI with your settings on start-up. 
+        */
+        public override PortSettings getPortSettings()
+        {
+            return new PortSettings("XOnXOff", 2400);
+        }
+
+        /*
             Initialize serial port settings specific to your device.
-            Override this method to configure parameters like parity, data bits, stop bits, etc.
         */
         public override void initPort()
         {
@@ -100,11 +108,12 @@ namespace Wedgies
             port.RtsEnable = false;
         }
 
+
         /*
             Core method for reading and processing serial data.
 
             This method is called repeatedly in a loop while the reader is running.
-            Override this method to customize how data is interpreted and processed.
+            Use this method to customize how data is interpreted and processed for your implementation. 
         */
         public override void worker()
         {
