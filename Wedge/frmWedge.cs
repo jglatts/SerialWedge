@@ -47,6 +47,7 @@ namespace Wedgies
 
         public frmWedge()
         {
+            // set Form objects
             InitializeComponent();
             Populate();
 
@@ -55,22 +56,8 @@ namespace Wedgies
             port.WriteTimeout = 500;
             port.ReadTimeout = 500;
 
-            // todo:
-            //  move these constructors to the impl class and have a
-            //  a static factory method to get the new SerialReader object
-
-            // set the serial reader implementation 
-            //setSerialReader(new IndicatorSerialReader(port, updateLiveInput));
-
-            // MircoVu serial reader implementation
-            MicroVuSerialReader microVu = new MicroVuSerialReader(port, updateLiveInput);
-            chkGetXData.Checked = true;
-            btnTabDelim.Checked = true;
-            microVu.setForm(this);
-            setSerialReader((SerialReaderBase)microVu);
-
-            // default serial reader 
-            //setSerialReader(new SerialReaderBase(port, updateLiveInput));
+            // set the SerialReader impl
+            setSerialReader();
 
             // event handlers
             chkOnOff.CheckedChanged += new EventHandler(chkOnOff_CheckedChanged);
@@ -80,9 +67,22 @@ namespace Wedgies
             chkBeepOnInput.Checked = true;
         }
 
-        public void setSerialReader(SerialReaderBase serialReaderImpl)
+        public void setSerialReader()
         {
-            serialreader = serialReaderImpl;
+            // set the serial reader implementation 
+            
+            // Indicator Machine ( Drop-Down Gauge )
+            //serialreader = new IndicatorSerialReader(port, updateLiveInput);
+
+            // MircoVu CMM
+            MicroVuSerialReader microVu = new MicroVuSerialReader(port, updateLiveInput);
+            chkGetXData.Checked = true;
+            btnTabDelim.Checked = true;
+            microVu.setForm(this);
+            serialreader = microVu;
+
+            // default serial reader 
+            //serialreader = new SerialReaderBase(port, updateLiveInput));
         }
 
         private void frmWedge_FormClosing(object sender, FormClosingEventArgs e)

@@ -10,23 +10,19 @@ namespace Wedgies
 {
     class MicroVuSerialReader : SerialReaderBase
     {
-        private bool last_was_number;
         private bool get_x_data;
         private bool get_y_data;
         private bool get_xy_data;
         private frmWedge mainForm;
-        private List<double> xy_data;
         private List<double> all_data;
         private string delim;
 
         public MicroVuSerialReader(SerialPort port, UpdateCallback callback): 
             base(port, callback) 
         {
-            last_was_number = false;
             get_x_data = false;
             get_y_data = false;
             get_xy_data = false;
-            xy_data = new List<double>();
             all_data = new List<double>();
             delim = " ";
         }
