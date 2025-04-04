@@ -111,7 +111,6 @@ namespace Wedgies
             port.RtsEnable = false;
         }
 
-
         /*
             Core method for reading and processing serial data.
 
