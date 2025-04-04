@@ -44,7 +44,7 @@ Builds upon https://github.com/pormiston/SerialWedge
 
 ### From GitHub Releases 
 1. **Go to the Releases page**: [SerialWedge Releases](https://github.com/jglatts/SerialWedge/releases)  
-2. **Download** the latest `Wedge.exe` from the **Assets** section  
+2. **Download** the latest **Assets** from the Assests section on the Releases page 
 3. **Run** the application (no installation required)  
 
 ### From Source  
