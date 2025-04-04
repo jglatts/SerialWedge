@@ -62,14 +62,16 @@ namespace Wedgies
         public void setSerialReader()
         {
             // Indicator Machine ( Drop-Down Gauge )
-            //serialreader = new IndicatorSerialReader(port, updateLiveInput);
+            serialreader = new IndicatorSerialReader(port, updateLiveInput);
 
             // MircoVu CMM
+            /*
             MicroVuSerialReader microVu = new MicroVuSerialReader(port, updateLiveInput);
             chkGetYData.Checked = true;
             btnNewLineDelim.Checked = true;
             microVu.setForm(this);
             serialreader = microVu;
+            */
 
             // default serial reader 
             //serialreader = new SerialReaderBase(port, updateLiveInput);

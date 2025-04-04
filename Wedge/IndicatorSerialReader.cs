@@ -50,6 +50,7 @@ namespace Wedgies
                 }
                 SendKeys.SendWait(formatted_line);
                 updateCallback?.Invoke(formatted_line);
+                return true;
             }
             catch (TimeoutException) 
             {
