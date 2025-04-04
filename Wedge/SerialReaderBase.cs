@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO.Ports;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,14 +16,19 @@ namespace Wedgies
 
         public UpdateCallback updateCallback;
         public SerialPort port;
+        private SoundPlayer soundPlayer;
         public bool is_running;
+        private bool input_beep;
 
         public SerialReaderBase(SerialPort port, UpdateCallback updateCallback)
         {
             this.port = port;
             this.updateCallback = updateCallback;
             this.is_running = false;
+            this.input_beep = false;
+            this.soundPlayer = new SoundPlayer();
         }
+
 
         /*
          * default SerialPort init method
@@ -47,6 +53,11 @@ namespace Wedgies
         public virtual PortSettings getPortSettings()
         { 
             return new PortSettings("None", 115200);
+        }
+
+        public void setInputBeep(bool input_beep)
+        { 
+            this.input_beep = input_beep;
         }
 
         /*
@@ -78,6 +89,11 @@ namespace Wedgies
             while (is_running)
             { 
                 worker();
+                if (input_beep)
+                {
+                    // try this out for now
+                    SystemSounds.Beep.Play();
+                }
             }
         }
 

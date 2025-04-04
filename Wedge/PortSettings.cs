@@ -24,6 +24,7 @@ namespace Wedgies
         public static int[] bauds = { 110, 300, 600, 1200, 2400, 4800, 9600,
                                       14400, 19200, 38400, 57600, 115200 };
 
+        // change this to take the enum
         public PortSettings(string handshake, int baud)
         {
             string[] check = handShakes.Keys.ToArray().Where(k => (k == handshake)).ToArray();

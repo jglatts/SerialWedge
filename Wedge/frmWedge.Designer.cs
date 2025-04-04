@@ -121,7 +121,7 @@
             this.tabSerialSettings.Location = new System.Drawing.Point(16, -2);
             this.tabSerialSettings.Name = "tabSerialSettings";
             this.tabSerialSettings.SelectedIndex = 0;
-            this.tabSerialSettings.Size = new System.Drawing.Size(576, 472);
+            this.tabSerialSettings.Size = new System.Drawing.Size(604, 484);
             this.tabSerialSettings.TabIndex = 7;
             // 
             // tabPage1
@@ -137,7 +137,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabPage1.Size = new System.Drawing.Size(568, 439);
+            this.tabPage1.Size = new System.Drawing.Size(596, 451);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Serial Settings";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -172,7 +172,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabPage2.Size = new System.Drawing.Size(568, 439);
+            this.tabPage2.Size = new System.Drawing.Size(596, 439);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Live Input";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -194,7 +194,7 @@
             this.tabDataFilter.Controls.Add(this.groupBox1);
             this.tabDataFilter.Location = new System.Drawing.Point(4, 29);
             this.tabDataFilter.Name = "tabDataFilter";
-            this.tabDataFilter.Size = new System.Drawing.Size(568, 439);
+            this.tabDataFilter.Size = new System.Drawing.Size(596, 439);
             this.tabDataFilter.TabIndex = 2;
             this.tabDataFilter.Text = "Data Filtering";
             this.tabDataFilter.UseVisualStyleBackColor = true;
@@ -279,7 +279,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(612, 477);
+            this.ClientSize = new System.Drawing.Size(638, 507);
             this.Controls.Add(this.tabSerialSettings);
             this.HelpButton = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

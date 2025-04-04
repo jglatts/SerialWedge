@@ -54,7 +54,6 @@ namespace Wedgies
             FormClosing += new FormClosingEventHandler(frmWedge_FormClosing);
             bgwInterceptWorker.DoWork += new DoWorkEventHandler(serialreader.runner);
             bgwInterceptWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(StartStop);
-            chkBeepOnInput.Checked = true;
 
             // set Form objects with impl. specific details
             Populate();
@@ -112,6 +111,8 @@ namespace Wedgies
             cboBaudRate.DataSource = PortSettings.bauds;
             cboHandShake.SelectedIndex = Array.IndexOf(PortSettings.handShakes.Keys.ToArray(), settings.handshake);
             cboBaudRate.SelectedIndex = Array.IndexOf(PortSettings.bauds, settings.baud);
+
+            chkBeepOnInput.Checked = true;
         }
 
         private void setAndOpenPort()
@@ -152,6 +153,10 @@ namespace Wedgies
         private void chkBeepOnInput_CheckedChanged(object sender, EventArgs e)
         {
             inputBeep = chkBeepOnInput.Checked;
+            if (serialreader != null)
+            {
+                serialreader.setInputBeep(inputBeep);
+            }
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
