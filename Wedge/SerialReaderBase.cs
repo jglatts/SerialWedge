@@ -29,7 +29,6 @@ namespace Wedgies
             this.soundPlayer = new SoundPlayer();
         }
 
-
         /*
          * default SerialPort init method
          * 
