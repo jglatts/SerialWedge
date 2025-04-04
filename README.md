@@ -118,8 +118,9 @@ namespace Wedgies
             This method is called repeatedly in a loop while the reader is running.
             Use this method to customize how data is interpreted and processed. 
         */
-        public override void worker()
+        public override bool worker()
         {
+            bool ret = true;
             try
             {
                 // Read a line of data from the serial port
@@ -140,8 +141,10 @@ namespace Wedgies
             }
             catch (TimeoutException)
             {
-                // No data available, continue
+                // No data available
+                ret = false;
             }
+            return ret;
         }
     }
 }
