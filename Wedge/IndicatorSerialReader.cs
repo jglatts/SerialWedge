@@ -36,8 +36,9 @@ namespace Wedgies
             return new PortSettings("XOnXOff", 2400);
         }
 
-        public override void worker() 
+        public override bool worker() 
         {
+            bool ret = true;
             try
             {
                 string line = port.ReadLine().Replace('?', ' ');
@@ -50,7 +51,11 @@ namespace Wedgies
                 SendKeys.SendWait(formatted_line);
                 updateCallback?.Invoke(formatted_line);
             }
-            catch (TimeoutException) { }
+            catch (TimeoutException) 
+            {
+                ret = false;
+            }
+            return ret;
         }
     
     }

@@ -70,19 +70,20 @@ namespace Wedgies
             return new PortSettings("RequestToSend", 2400);
         }
 
-        public override void worker()
+        public override bool worker()
         {
+            bool ret = true;    
             try
             {
                 if (!getOutType())
                 {
                     MessageBox.Show("error with data output type!\nplease see data-filterting tab");
-                    return;
+                    return false;
                 }
 
                 string line = port.ReadLine();
                 if (line.Contains("@"))
-                    return;
+                    return false;
                 
                 if (Double.TryParse(line, out double val))
                 {
@@ -105,7 +106,11 @@ namespace Wedgies
                 }
 
             }
-            catch (TimeoutException) { }
+            catch (TimeoutException) 
+            {
+                ret = false;
+            }
+            return ret;
         }
 
     }

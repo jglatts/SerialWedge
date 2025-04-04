@@ -67,15 +67,20 @@ namespace Wedgies
          *      - make a subclass of this class (SerialReaderBase)
          *      - implement a worker() method that will read and interpret your data 
          */
-        public virtual void worker() 
+        public virtual bool worker() 
         {
+            bool ret = true;
             try
             {
                 string line = port.ReadLine();
                 SendKeys.SendWait(line);
                 updateCallback?.Invoke(line);
             }
-            catch (TimeoutException) { }
+            catch (TimeoutException) 
+            {
+                ret = false;
+            }
+            return ret;
         }
 
         public void runner(object sender, DoWorkEventArgs args)
@@ -87,12 +92,11 @@ namespace Wedgies
             }
 
             while (is_running)
-            { 
-                worker();
-                if (input_beep)
+            {
+                if (worker())
                 {
-                    // try this out for now
-                    SystemSounds.Beep.Play();
+                    if (input_beep)
+                        SystemSounds.Beep.Play();
                 }
             }
         }
