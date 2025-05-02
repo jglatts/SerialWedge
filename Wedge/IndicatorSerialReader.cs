@@ -48,6 +48,7 @@ namespace Wedgies
                     if (line[i] != ' ' && line[i] != 'i' && line[i] != 'n')
                         formatted_line += line[i];
                 }
+                formatted_line = formatted_line.Replace('\n', ' ');
                 SendKeys.SendWait(formatted_line);
                 updateCallback?.Invoke(formatted_line);
                 return true;
