@@ -91,21 +91,12 @@ namespace Wedgies
                     all_data.Add(val);
                     if (all_data.Count == 3)
                     {
-                        string data_str = "";
-                        
-                        if (get_xy_data)
-                            data_str = all_data[0] + delim + all_data[1] + delim;
-                        else if (get_y_data)
-                            data_str = all_data[1] + delim;
-                        else if (get_x_data)
-                            data_str = all_data[0] + delim;
-                        
+                        string data_str = getDataStr();
                         SendKeys.SendWait(data_str);
                         //updateCallback?.Invoke(data_str);
                         all_data.Clear();   
                     }
                 }
-
             }
             catch (TimeoutException) 
             {
@@ -115,5 +106,20 @@ namespace Wedgies
             return ret;
         }
 
+        private string getDataStr()
+        {
+            string data_ret = "";
+
+            if (get_xy_data)
+                data_ret = all_data[0] + delim + all_data[1] + delim;
+            else if (get_y_data)
+                data_ret = all_data[1] + delim;
+            else if (get_x_data)
+                data_ret = all_data[0] + delim;
+
+            return data_ret;
+        }
+
     }
+
 }
