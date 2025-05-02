@@ -69,10 +69,11 @@ namespace Wedgies
         {
             return new PortSettings("RequestToSend", 2400);
         }
-
+        
         public override bool worker()
         {
             bool ret = true;    
+
             try
             {
                 if (!getOutType())
@@ -110,6 +111,7 @@ namespace Wedgies
             {
                 ret = false;
             }
+
             return ret;
         }
 

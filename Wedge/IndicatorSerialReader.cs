@@ -51,12 +51,12 @@ namespace Wedgies
                 formatted_line = formatted_line.Replace('\n', ' ');
                 SendKeys.SendWait(formatted_line);
                 updateCallback?.Invoke(formatted_line);
-                return true;
             }
             catch (TimeoutException) 
             {
                 ret = false;
             }
+
             return ret;
         }
     
