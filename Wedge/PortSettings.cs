@@ -18,7 +18,6 @@ namespace Wedgies
             { "XOnXOff", Handshake.XOnXOff },
             { "RequestToSend", Handshake.RequestToSend },
             { "RequestToSendXOnXOff", Handshake.RequestToSendXOnXOff }
-
         };
 
         public static int[] bauds = { 110, 300, 600, 1200, 2400, 4800, 9600,

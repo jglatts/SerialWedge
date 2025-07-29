@@ -83,17 +83,18 @@ namespace Wedgies
                 }
 
                 string line = port.ReadLine();
+                updateCallback?.Invoke(line);
+
                 if (line.Contains("@"))
                     return false;
-                
+
                 if (Double.TryParse(line, out double val))
                 {
                     all_data.Add(val);
-                    if (all_data.Count == 3)
+                    if (all_data.Count >= 2)
                     {
                         string data_str = getDataStr();
                         SendKeys.SendWait(data_str);
-                        //updateCallback?.Invoke(data_str);
                         all_data.Clear();   
                     }
                 }
