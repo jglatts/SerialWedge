@@ -74,8 +74,10 @@ namespace Wedgies
             */
 
             // default serial reader 
+            // testing prefix stripping options
             serialreader = new SerialReaderBase(port, updateLiveInput);
         }
+
 
         private void frmWedge_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -137,6 +139,7 @@ namespace Wedgies
                 try
                 {
                     setAndOpenPort();
+                    serialreader.ignore_prefix = checkBoxIgnorePrefix.Checked;
                     serialreader.is_running = true;
                     bgwInterceptWorker.RunWorkerAsync();
                 }
@@ -181,6 +184,12 @@ namespace Wedgies
         private void chkOnOff_CheckedChanged_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void checkBoxIgnorePrefix_CheckedChanged(object sender, EventArgs e)
+        {
+            serialreader.ignore_prefix = checkBoxIgnorePrefix.Checked;
+            serialreader.prefixString = txtBoxPrefixStrip.Text;
         }
     }
 }
