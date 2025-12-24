@@ -164,6 +164,12 @@ namespace Wedgies
             }
         }
 
+        private void checkBoxIgnorePrefix_CheckedChanged(object sender, EventArgs e)
+        {
+            serialreader.ignore_prefix = checkBoxIgnorePrefix.Checked;
+            serialreader.prefixString = txtBoxPrefixStrip.Text;
+        }
+
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 
@@ -186,10 +192,5 @@ namespace Wedgies
 
         }
 
-        private void checkBoxIgnorePrefix_CheckedChanged(object sender, EventArgs e)
-        {
-            serialreader.ignore_prefix = checkBoxIgnorePrefix.Checked;
-            serialreader.prefixString = txtBoxPrefixStrip.Text;
-        }
     }
 }
