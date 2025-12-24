@@ -65,14 +65,16 @@ namespace Wedgies
             //serialreader = new IndicatorSerialReader(port, updateLiveInput);
 
             // MircoVu CMM
+            /*
             MicroVuSerialReader microVu = new MicroVuSerialReader(port, updateLiveInput);
             chkGetYData.Checked = true;
             btnNewLineDelim.Checked = true;
             microVu.setForm(this);
             serialreader = microVu;
+            */
 
             // default serial reader 
-            //serialreader = new SerialReaderBase(port, updateLiveInput);
+            serialreader = new SerialReaderBase(port, updateLiveInput);
         }
 
         private void frmWedge_FormClosing(object sender, FormClosingEventArgs e)

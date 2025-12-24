@@ -82,13 +82,16 @@ namespace Wedgies
             bool ret = true;
             try
             {
-                string line = port.ReadLine();
-                if (checkPrefixOptions(line))
+                string rawLine = port.ReadLine();
+                if (checkPrefixOptions(rawLine))
                 {
-                    line = line.Substring(prefixString.Length);
+                    string line = rawLine.Substring(prefixString.Length);
+                    MessageBox.Show("Ignored new string: " + line);
+                    SendKeys.SendWait(line);
+                    updateCallback?.Invoke(line);
                 }
-                SendKeys.SendWait(line);
-                updateCallback?.Invoke(line);
+                SendKeys.SendWait(rawLine);
+                updateCallback?.Invoke(rawLine);
             }
             catch (TimeoutException) 
             {
