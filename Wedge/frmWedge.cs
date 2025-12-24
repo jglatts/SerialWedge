@@ -175,5 +175,10 @@ namespace Wedgies
         private void groupBox2_Enter(object sender, EventArgs e)
         {
         }
+
+        private void chkOnOff_CheckedChanged_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
