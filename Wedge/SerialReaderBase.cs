@@ -63,6 +63,13 @@ namespace Wedgies
             this.input_beep = input_beep;
         }
 
+        private bool checkPrefixOptions(string line)
+        {
+            return  ignore_prefix &&
+                    !string.IsNullOrEmpty(prefixString) &&
+                    line.StartsWith(prefixString);
+        }
+
         /*
          *  default serial keyboard implementation
          *  
@@ -76,10 +83,9 @@ namespace Wedgies
             try
             {
                 string line = port.ReadLine();
-                if (ignore_prefix)
+                if (checkPrefixOptions(line))
                 {
-                    if (!string.IsNullOrEmpty(prefixString))
-                        line = line.Replace(prefixString, "");
+                    line = line.Substring(prefixString.Length);
                 }
                 SendKeys.SendWait(line);
                 updateCallback?.Invoke(line);
