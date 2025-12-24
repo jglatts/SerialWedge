@@ -49,11 +49,18 @@
             this.chkGetYData = new System.Windows.Forms.CheckBox();
             this.chkGetXData = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.checkBoxIgnorePrefix = new System.Windows.Forms.CheckBox();
+            this.txtBoxPrefixStrip = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.tabSerialSettings.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabDataFilter.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // cboPort
@@ -118,6 +125,7 @@
             this.tabSerialSettings.Controls.Add(this.tabPage1);
             this.tabSerialSettings.Controls.Add(this.tabPage2);
             this.tabSerialSettings.Controls.Add(this.tabDataFilter);
+            this.tabSerialSettings.Controls.Add(this.tabPage3);
             this.tabSerialSettings.Location = new System.Drawing.Point(11, -1);
             this.tabSerialSettings.Margin = new System.Windows.Forms.Padding(2);
             this.tabSerialSettings.Name = "tabSerialSettings";
@@ -273,6 +281,57 @@
             this.groupBox1.Text = "MircoVu Data Output";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.groupBox3);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(395, 289);
+            this.tabPage3.TabIndex = 3;
+            this.tabPage3.Text = "Prefix ";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.label4);
+            this.groupBox3.Controls.Add(this.txtBoxPrefixStrip);
+            this.groupBox3.Controls.Add(this.checkBoxIgnorePrefix);
+            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.Location = new System.Drawing.Point(35, 22);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(330, 235);
+            this.groupBox3.TabIndex = 3;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Prefix Data ";
+            // 
+            // checkBoxIgnorePrefix
+            // 
+            this.checkBoxIgnorePrefix.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxIgnorePrefix.Location = new System.Drawing.Point(55, 107);
+            this.checkBoxIgnorePrefix.Name = "checkBoxIgnorePrefix";
+            this.checkBoxIgnorePrefix.Size = new System.Drawing.Size(150, 49);
+            this.checkBoxIgnorePrefix.TabIndex = 1;
+            this.checkBoxIgnorePrefix.Text = "Ignore Prefix";
+            this.checkBoxIgnorePrefix.UseVisualStyleBackColor = true;
+            // 
+            // txtBoxPrefixStrip
+            // 
+            this.txtBoxPrefixStrip.Location = new System.Drawing.Point(105, 67);
+            this.txtBoxPrefixStrip.Name = "txtBoxPrefixStrip";
+            this.txtBoxPrefixStrip.Size = new System.Drawing.Size(170, 20);
+            this.txtBoxPrefixStrip.TabIndex = 2;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(51, 67);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(48, 20);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Prefix";
+            // 
             // frmWedge
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -291,6 +350,9 @@
             this.tabDataFilter.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -317,6 +379,11 @@
         private System.Windows.Forms.GroupBox groupBox2;
         public System.Windows.Forms.RadioButton btnTabDelim;
         public System.Windows.Forms.RadioButton btnNewLineDelim;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.GroupBox groupBox3;
+        public System.Windows.Forms.CheckBox checkBoxIgnorePrefix;
+        protected System.Windows.Forms.Label label4;
+        public System.Windows.Forms.TextBox txtBoxPrefixStrip;
     }
 }
 
