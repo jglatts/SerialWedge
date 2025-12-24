@@ -17,6 +17,8 @@
  *          
  */
 using System;
+using System.Management;
+using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -35,6 +37,15 @@ namespace Wedgies
         private SerialPort port = null;
         private SerialReaderBase serialreader; 
         private bool inputBeep = false;
+
+        public class SerialDeviceInfo
+        {
+            public string Name { get; set; }
+            public string Info { get; set; }
+
+            public override string ToString() => $"{Name} - {Info}";
+        }
+
 
         public frmWedge()
         {
@@ -78,7 +89,6 @@ namespace Wedgies
             serialreader = new SerialReaderBase(port, updateLiveInput);
         }
 
-
         private void frmWedge_FormClosing(object sender, FormClosingEventArgs e)
         {
             chkOnOff.Checked = false;
@@ -104,24 +114,64 @@ namespace Wedgies
 
         private void Populate()
         {
-            string[] port_names = SerialPort.GetPortNames();
-            if (port_names.Length != 0)
-                cboPort.DataSource = port_names;
+            var devices = GetSerialDevices();
+
+            if (devices.Count > 0)
+            {
+                cboPort.DataSource = devices;
+                //cboPort.DisplayMember = "PortName";   
+                //cboPort.ValueMember = "PortName";     
+            }
             else
+            {
                 cboPort.Text = "NO PORTS FOUND";
-            
+            }
+
             PortSettings settings = serialreader.getPortSettings();
+
             cboHandShake.DataSource = PortSettings.handShakes.Keys.ToArray();
             cboBaudRate.DataSource = PortSettings.bauds;
-            cboHandShake.SelectedIndex = Array.IndexOf(PortSettings.handShakes.Keys.ToArray(), settings.handshake);
-            cboBaudRate.SelectedIndex = Array.IndexOf(PortSettings.bauds, settings.baud);
+
+            cboHandShake.SelectedIndex =
+                Array.IndexOf(PortSettings.handShakes.Keys.ToArray(), settings.handshake);
+
+            cboBaudRate.SelectedIndex =
+                Array.IndexOf(PortSettings.bauds, settings.baud);
 
             chkBeepOnInput.Checked = true;
         }
 
+
+        public static List<SerialDeviceInfo> GetSerialDevices()
+        {
+            var list = new List<SerialDeviceInfo>();
+
+            using (var searcher = new ManagementObjectSearcher(
+                "SELECT * FROM Win32_PnPEntity WHERE Name LIKE '%(COM%'"))
+            {
+                foreach (ManagementObject obj in searcher.Get())
+                {
+                    string name = obj["Name"]?.ToString();
+                    if (name == null) continue;
+
+                    // Extract COM port
+                    var match = Regex.Match(name, @"\((COM\d+)\)");
+                    if (!match.Success) continue;
+
+                    list.Add(new SerialDeviceInfo
+                    {
+                        Name = match.Groups[1].Value,
+                        Info = name.Replace(match.Value, "").Trim()
+                    });
+                }
+            }
+
+            return list;
+        }
+
         private void setAndOpenPort()
         {
-            port.PortName = cboPort.SelectedItem + "";
+            port.PortName = cboPort.SelectedItem.ToString().Split('-')[0] + "";
             port.BaudRate = (int)cboBaudRate.SelectedItem;
             port.Handshake = PortSettings.handShakes[cboHandShake.SelectedItem.ToString()];
             serialreader.initPort();
@@ -143,9 +193,9 @@ namespace Wedgies
                     serialreader.is_running = true;
                     bgwInterceptWorker.RunWorkerAsync();
                 }
-                catch
+                catch (Exception ex)
                 {
-                    MessageBox.Show("error opening port!");
+                    MessageBox.Show("error opening port!\nname " + port.PortName + "\n" + ex.Message);
                     chkOnOff.Checked = false;
                 }
             }
