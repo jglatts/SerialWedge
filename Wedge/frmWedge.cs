@@ -46,7 +46,6 @@ namespace Wedgies
             public override string ToString() => $"{Name} - {Info}";
         }
 
-
         public frmWedge()
         {
             // set Form objects
@@ -114,13 +113,11 @@ namespace Wedgies
 
         private void Populate()
         {
-            var devices = GetSerialDevices();
+            List<SerialDeviceInfo> devices = GetSerialDevices();
 
             if (devices.Count > 0)
             {
                 cboPort.DataSource = devices;
-                //cboPort.DisplayMember = "PortName";   
-                //cboPort.ValueMember = "PortName";     
             }
             else
             {
@@ -144,19 +141,21 @@ namespace Wedgies
 
         public static List<SerialDeviceInfo> GetSerialDevices()
         {
-            var list = new List<SerialDeviceInfo>();
+            List<SerialDeviceInfo> list = new List<SerialDeviceInfo>();
 
-            using (var searcher = new ManagementObjectSearcher(
+            using (ManagementObjectSearcher searcher = new ManagementObjectSearcher(
                 "SELECT * FROM Win32_PnPEntity WHERE Name LIKE '%(COM%'"))
             {
                 foreach (ManagementObject obj in searcher.Get())
                 {
                     string name = obj["Name"]?.ToString();
-                    if (name == null) continue;
+                    if (name == null) 
+                        continue;
 
                     // Extract COM port
-                    var match = Regex.Match(name, @"\((COM\d+)\)");
-                    if (!match.Success) continue;
+                    Match match = Regex.Match(name, @"\((COM\d+)\)");
+                    if (!match.Success) 
+                        continue;
 
                     list.Add(new SerialDeviceInfo
                     {
@@ -171,7 +170,7 @@ namespace Wedgies
 
         private void setAndOpenPort()
         {
-            port.PortName = cboPort.SelectedItem.ToString().Split('-')[0] + "";
+            port.PortName = ((SerialDeviceInfo)(cboPort.SelectedItem)).Name;
             port.BaudRate = (int)cboBaudRate.SelectedItem;
             port.Handshake = PortSettings.handShakes[cboHandShake.SelectedItem.ToString()];
             serialreader.initPort();
