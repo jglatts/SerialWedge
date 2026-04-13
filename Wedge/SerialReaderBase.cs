@@ -17,6 +17,8 @@ namespace Wedgies
         public UpdateCallback updateCallback;
         public SerialPort port;
         private SoundPlayer soundPlayer;
+        public string prefixString;
+        public bool ignore_prefix;
         public bool is_running;
         private bool input_beep;
 
@@ -24,7 +26,9 @@ namespace Wedgies
         {
             this.port = port;
             this.updateCallback = updateCallback;
+            this.prefixString = "";
             this.is_running = false;
+            this.ignore_prefix = false;
             this.input_beep = false;
             this.soundPlayer = new SoundPlayer();
         }
@@ -59,6 +63,13 @@ namespace Wedgies
             this.input_beep = input_beep;
         }
 
+        private bool checkPrefixOptions(string line)
+        {
+            return  ignore_prefix &&
+                    !string.IsNullOrEmpty(prefixString) &&
+                    line.StartsWith(prefixString);
+        }
+
         /*
          *  default serial keyboard implementation
          *  
@@ -72,6 +83,10 @@ namespace Wedgies
             try
             {
                 string line = port.ReadLine();
+                if (checkPrefixOptions(line))
+                {
+                    line = line.Substring(prefixString.Length);
+                }
                 SendKeys.SendWait(line);
                 updateCallback?.Invoke(line);
             }
