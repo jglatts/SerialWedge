@@ -85,7 +85,9 @@ namespace Wedgies
 
             // default serial reader 
             // testing prefix stripping options
-            serialreader = new SerialReaderBase(port, updateLiveInput);
+            //serialreader = new SerialReaderBase(port, updateLiveInput);
+
+            serialreader = new MitutoyoSerialReader(port, updateLiveInput);
         }
 
         private void frmWedge_FormClosing(object sender, FormClosingEventArgs e)

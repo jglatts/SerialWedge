@@ -1,7 +1,25 @@
-﻿using System;
+﻿/**
+ * 
+ *     // simulated data on arduino 
+ *     const char* frames[] = {
+ *          "FFFF800247130", // -2.471 mm
+ *          "FFFF000123450", // 0.01234 mm
+ *          "FFFF800100000", // -1000 mm
+ *          "FFFF000000100"  // 1 mm
+ *     };
+ * 
+ *     parsing from UI: 
+ *       -2.471mm     (correct)
+ *       0.01234mm    (correct)
+ *       -1000mm      (correct)
+ *       1mm          (correct)
+ */
+
+using System;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace Wedgies
 {
@@ -26,12 +44,14 @@ namespace Wedgies
                 if (!tryParseMitutoyoFrame(frame, out string formattedValue))
                     return false;
 
+                formattedValue += "\n";
+                SendKeys.SendWait(formattedValue);
                 updateCallback?.Invoke(formattedValue);
                 return true;
             }
             catch (Exception ex)
             {
-                updateCallback?.Invoke("Mitutoyo parse error: " + ex.Message);
+                updateCallback?.Invoke("Mitutoyo parse error:\n" + ex.Message);
                 return false;
             }
         }
