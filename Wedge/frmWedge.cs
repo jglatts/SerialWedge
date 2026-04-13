@@ -128,13 +128,8 @@ namespace Wedgies
 
             cboHandShake.DataSource = PortSettings.handShakes.Keys.ToArray();
             cboBaudRate.DataSource = PortSettings.bauds;
-
-            cboHandShake.SelectedIndex =
-                Array.IndexOf(PortSettings.handShakes.Keys.ToArray(), settings.handshake);
-
-            cboBaudRate.SelectedIndex =
-                Array.IndexOf(PortSettings.bauds, settings.baud);
-
+            cboHandShake.SelectedIndex = Array.IndexOf(PortSettings.handShakes.Keys.ToArray(), settings.handshake);
+            cboBaudRate.SelectedIndex = Array.IndexOf(PortSettings.bauds, settings.baud);
             chkBeepOnInput.Checked = true;
         }
 
