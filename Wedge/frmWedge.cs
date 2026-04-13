@@ -165,11 +165,19 @@ namespace Wedgies
 
         private void setAndOpenPort()
         {
-            port.PortName = ((SerialDeviceInfo)(cboPort.SelectedItem)).Name;
-            port.BaudRate = (int)cboBaudRate.SelectedItem;
-            port.Handshake = PortSettings.handShakes[cboHandShake.SelectedItem.ToString()];
-            serialreader.initPort();
-            port.Open();
+            try
+            { 
+                port.PortName = ((SerialDeviceInfo)(cboPort.SelectedItem))?.Name;
+                port.BaudRate = (int)cboBaudRate.SelectedItem;
+                port.Handshake = PortSettings.handShakes[cboHandShake.SelectedItem.ToString()];
+                serialreader.initPort();
+                port.Open();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("error opening port!\nname " + port.PortName + "\n" + ex.Message);
+                chkOnOff.Checked = false;
+            }
         }
 
         private void StartStop(object sender, RunWorkerCompletedEventArgs args)
