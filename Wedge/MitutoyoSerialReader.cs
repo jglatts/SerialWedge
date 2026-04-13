@@ -121,13 +121,14 @@ namespace Wedgies
             bool isNegative = d[4] == 0x8;
 
             // Digits d6-d11
-            var digitVals = d.Skip(5).Take(6).ToArray();
+            int[] digitVals = d.Skip(5).Take(6).ToArray();
             if (digitVals.Any(x => x < 0 || x > 9))
                 return false;
 
+            // Combine digits into a string
             string digits = string.Concat(digitVals.Select(x => x.ToString()));
 
-            // Decimal position d12
+            // Decimal position 
             int decimalPlaces = decodeDecimalPlaces(d[11]);
 
             // Unit d13: 0 = mm, 1 = inch
