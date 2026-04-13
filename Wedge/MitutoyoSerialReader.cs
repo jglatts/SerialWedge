@@ -117,8 +117,6 @@ namespace Wedgies
             if (d[0] != 0xF || d[1] != 0xF || d[2] != 0xF || d[3] != 0xF)
                 return false;
 
-            // Sign: + = 0, - = 8
-            bool isNegative = d[4] == 0x8;
 
             // Digits d6-d11
             int[] digitVals = d.Skip(5).Take(6).ToArray();
@@ -135,7 +133,8 @@ namespace Wedgies
             string unit = d[12] == 0x1 ? "inch" : "mm";
 
             string value = insertDecimal(digits, decimalPlaces);
-
+            
+            bool isNegative = d[4] == 0x8;
             if (isNegative && value != "0")
                 value = "-" + value;
 
@@ -145,32 +144,11 @@ namespace Wedgies
 
         private int decodeDecimalPlaces(int value)
         {
-            int decimalPlaces = 0;
-
-            // Some devices send literal decimal count: 0–5
+            int ret = 0;
             if (value >= 0 && value <= 5)
-                return value;
+                ret = value;
 
-            switch (value)
-            {
-                case 0x8:
-                    decimalPlaces = 1;
-                    break;
-                case 0x4:
-                    decimalPlaces = 2;
-                    break;
-                case 0x2:
-                    decimalPlaces = 3;
-                    break;
-                case 0x1:
-                    decimalPlaces = 4;
-                    break;
-                default:
-                    decimalPlaces = 0;
-                    break;
-            }
-
-            return decimalPlaces;
+            return ret;
         }
 
         private string insertDecimal(string digits, int decimalPlaces)
