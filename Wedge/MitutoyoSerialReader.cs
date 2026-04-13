@@ -173,7 +173,7 @@ namespace Wedgies
             if (value.StartsWith("."))
                 value = "0" + value;
 
-            // Optional cleanup: remove leading zeros except "0.xxx"
+            // remove leading zeros except "0.xxx"
             if (value.Contains("."))
             {
                 var parts = value.Split('.');
