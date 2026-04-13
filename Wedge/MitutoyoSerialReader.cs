@@ -30,6 +30,23 @@ namespace Wedgies
         {
         }
 
+        public override void initPort()
+        {
+            // set any custom port settings for the mitutoyo device here
+            // example
+            /*
+            port.DataBits = 7;
+            port.StopBits = StopBits.One;
+            port.Parity = Parity.Even;
+            */
+        }
+
+        public override PortSettings getPortSettings()
+        {
+            // create your own settings here for the mitutoyo device
+            return base.getPortSettings();
+        }
+
         public override bool worker()
         {
             try
