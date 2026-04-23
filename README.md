@@ -7,6 +7,7 @@ Supports **real-time data viewing** and **custom data handling**.
 
 ---
 
+## Documentation
 https://jglatts.github.io/SerialWedge/
 
 ---
