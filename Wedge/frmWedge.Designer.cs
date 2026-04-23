@@ -175,7 +175,6 @@
             this.chkOnOff.Text = "On/Off";
             this.chkOnOff.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkOnOff.UseVisualStyleBackColor = true;
-            this.chkOnOff.CheckedChanged += new System.EventHandler(this.chkOnOff_CheckedChanged_1);
             // 
             // tabPage2
             // 

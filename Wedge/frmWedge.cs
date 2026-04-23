@@ -241,10 +241,5 @@ namespace Wedgies
         {
         }
 
-        private void chkOnOff_CheckedChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
     }
 }
