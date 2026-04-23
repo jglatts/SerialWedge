@@ -5,6 +5,12 @@ Sends serial port data to any application (e.g., Excel, Notepad, ERP systems).
 Can collect data from **Serial, RS232, and RS232-via-USB** industrial equipment.  
 Supports **real-time data viewing** and **custom data handling**.  
 
+
+## Documentation
+https://jglatts.github.io/SerialWedge/
+
+---
+
 ## Features  
 ✅ Sends serial data as **keyboard input**  
 ✅ Works with **RS232, USB-to-Serial devices, and industrial equipment**  
