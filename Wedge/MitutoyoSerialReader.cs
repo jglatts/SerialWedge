@@ -32,13 +32,12 @@ namespace Wedgies
 
         public override void initPort()
         {
-            // set any custom port settings for the mitutoyo device here
-            // example
-            /*
-            port.DataBits = 7;
+            // set port settings for the mitutoyo device here
+            port.Parity = Parity.None;
+            port.DataBits = 8;
             port.StopBits = StopBits.One;
-            port.Parity = Parity.Even;
-            */
+            port.DtrEnable = true;
+            port.RtsEnable = false;
         }
 
         public override PortSettings getPortSettings()
