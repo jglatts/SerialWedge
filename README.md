@@ -83,6 +83,9 @@ namespace Wedgies
         /*
             Constructor for the custom serial reader.
             Calls the base class constructor to initialize the serial port and callback.
+
+           delegate void UpdateCallback(string s);
+
         */
         public MyDeviceSerialReader(SerialPort port, UpdateCallback callback)
             : base(port, callback)
