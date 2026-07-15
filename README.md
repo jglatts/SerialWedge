@@ -120,6 +120,7 @@ namespace Wedgies
         public override bool worker()
         {
             bool ret = true;
+
             try
             {
                 // Read a line of data from the serial port
@@ -127,7 +128,7 @@ namespace Wedgies
 
                 // Process the data as needed
                 if (string.IsNullOrEmpty(line))
-                    return;
+                    return false;
 
                 // Example: Filter out unwanted characters
                 line = line.Replace("?", "");
